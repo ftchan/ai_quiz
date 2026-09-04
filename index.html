@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>智能工程技术 · 理论刷题</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">AI</span><div><strong>理论刷题</strong><small>漳州市人工智能工程技术职业技能竞赛</small></div></div>
+    <div class="top-actions"><div class="stat-chip"><span>已完成</span><b id="doneCount">0</b></div><div class="stat-chip"><span>正确率</span><b id="accuracy">--</b></div><button class="icon-btn" id="resetBtn" title="清空本地记录">↺</button></div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="side-section"><div class="section-label">题库</div><button class="nav-btn active" data-filter="all"><span>全部题目</span><em id="allCount">130</em></button><button class="nav-btn" data-filter="single"><span>单选题</span><em id="singleCount">90</em></button><button class="nav-btn" data-filter="multiple"><span>多选题</span><em id="multipleCount">40</em></button><button class="nav-btn" data-filter="wrong"><span>错题重练</span><em id="wrongCount">0</em></button><button class="nav-btn" data-mode="memorize"><span>背题模式</span><em>直接看答案</em></button></div>
+      <div class="side-section"><div class="section-label">练习设置</div><label class="switch-row"><span>随机顺序</span><input type="checkbox" id="randomToggle"><i></i></label><label class="switch-row"><span>答后显示答案</span><input type="checkbox" id="instantToggle" checked><i></i></label></div>
+      <div class="side-footer"><span class="dot"></span> 数据保存在本机浏览器</div>
+    </aside>
+    <main class="content">
+      <div class="practice-head"><div><p class="eyebrow" id="modeLabel">全部题目</p><h1>开始练习</h1></div><div class="progress-wrap"><span id="progressText">1 / 130</span><div class="progress"><i id="progressBar"></i></div></div></div>
+      <section class="question-card" id="questionCard"></section>
+      <div class="bottom-actions"><button class="secondary-btn" id="prevBtn">← 上一题</button><button class="primary-btn" id="submitBtn">提交答案</button><button class="secondary-btn" id="nextBtn">下一题 →</button></div>
+    </main>
+    <aside class="palette-panel"><div class="palette-head"><strong>答题卡</strong><span id="paletteMeta">0 / 130</span></div><div class="legend"><span><i class="legend-dot current"></i>当前</span><span><i class="legend-dot done"></i>已答</span><span><i class="legend-dot wrong"></i>错误</span></div><div class="palette" id="palette"></div></aside>
+  </div>
+  <script src="questions.js"></script><script src="app.js"></script>
+</body>
+</html>
