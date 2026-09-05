@@ -1,0 +1,791 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>样题 × 双题库 对照结果</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+background:#F7F9FC;color:#1F2937;line-height:1.7;padding:24px 16px}
+.wrap{max-width:1120px;margin:0 auto} h1{font-size:24px;margin-bottom:6px}
+.sub{color:#6B7280;font-size:14px;margin-bottom:22px}
+.card{background:#fff;border-radius:12px;padding:22px;margin-bottom:18px;box-shadow:0 1px 3px rgba(16,24,40,.06)}
+h2{font-size:17px;margin-bottom:14px;padding-left:10px;border-left:4px solid #2563EB}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.kpi{background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(16,24,40,.06)}
+.kpi .v{font-size:26px;font-weight:700;color:#2563EB} .kpi .l{font-size:12px;color:#6B7280;margin-top:2px}
+.chart{display:flex;gap:28px;align-items:center;flex-wrap:wrap;justify-content:center}
+.donut{width:230px;height:230px;flex:0 0 auto}
+.dlbl{fill:#fff;font-size:17px;font-weight:700;text-anchor:middle;dominant-baseline:central}
+.dctr{fill:#1F2937;font-size:30px;font-weight:700;text-anchor:middle}
+.dsub{fill:#6B7280;font-size:13px;text-anchor:middle}
+.legend{display:flex;flex-direction:column;gap:10px;min-width:250px}
+.lg{display:flex;align-items:center;gap:9px;font-size:14px} .lg i{width:13px;height:13px;border-radius:3px}
+.lg b{margin-left:auto;font-variant-numeric:tabular-nums}
+.bars{display:flex;flex-direction:column;gap:12px} .brow{display:flex;align-items:center;gap:12px}
+.blab{flex:0 0 190px;font-size:13px;color:#374151}
+.btrack{flex:1;position:relative;height:26px;background:#EEF2F7;border-radius:5px}
+.btot{position:absolute;inset:0;background:#E2E8F0;border-radius:5px}
+.bfill{position:absolute;left:0;top:0;height:26px;border-radius:5px}
+.bval{position:absolute;left:10px;top:0;height:26px;line-height:26px;font-size:12px;font-weight:600;color:#1F2937;text-shadow:0 0 3px #fff}
+ul{padding-left:20px} li{margin-bottom:9px;font-size:14px}
+.tag{display:inline-block;background:#EEF2FF;color:#2563EB;border-radius:4px;padding:1px 7px;font-size:12px;font-weight:600}
+.note{background:#FFFBEB;border-left:3px solid #F59E0B;padding:11px 14px;border-radius:6px;font-size:13px;color:#78350F;margin-top:12px}
+.filters{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.filters button{border:1px solid #D1D5DB;background:#fff;border-radius:16px;padding:5px 14px;font-size:13px;cursor:pointer;color:#374151}
+.filters button.on{background:#2563EB;color:#fff;border-color:#2563EB}
+.tbox{overflow-x:auto} table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:9px 10px;text-align:left;border-bottom:1px solid #EEF2F7;vertical-align:top}
+th{background:#F9FAFB;font-weight:600;color:#374151;font-size:12px} td.c{white-space:nowrap;color:#6B7280}
+.opt{color:#6B7280;font-size:12px;margin-top:4px}
+.src{font-size:12px;margin-bottom:6px;padding-left:8px;border-left:2px solid #E5E7EB}
+.src b{color:#374151} .sim{color:#9CA3AF;font-size:11px}
+.ans{font-size:12px;font-weight:600;color:#059669;margin-top:3px} .ans.bad{color:#DC2626}
+.bdg{display:inline-block;color:#fff;border-radius:4px;padding:1px 7px;font-size:11px;font-weight:700}
+@media(max-width:720px){.kpis{grid-template-columns:repeat(2,1fr)}.blab{flex:0 0 110px;font-size:12px}table{font-size:12px}}
+</style></head><body><div class="wrap">
+<h1>样题 × 双题库 对照结果</h1>
+<div class="sub">两份题库（PDF 542 题 + DOC 570 题）合并去重后与「26年漳州市人工智能工程技术职业技能竞赛理论题样题」逐题比对　·　2026-09-05 09:05:53</div>
+
+<div class="kpis">
+<div class="kpi"><div class="v">130</div><div class="l">样题题数</div></div>
+<div class="kpi"><div class="v">741</div><div class="l">题库去重后题数</div></div>
+<div class="kpi"><div class="v" style="color:#059669">109</div><div class="l">确认同源（A+B）</div></div>
+<div class="kpi"><div class="v" style="color:#DC2626">18</div><div class="l">样题独有</div></div>
+</div>
+
+<div class="card"><h2>数据概览</h2><div class="chart">
+<svg viewBox="0 0 300 300" class="donut"><path d="M150.00,45.00 A105,105 0 1 1 61.09,94.14 L100.04,118.61 A59,59 0 1 0 150.00,91.00 Z" fill="#2563EB"/><text x="189.7" y="221.8" class="dlbl">94</text><path d="M61.09,94.14 A105,105 0 0 1 132.41,46.48 L140.12,91.83 A59,59 0 0 0 100.04,118.61 Z" fill="#0EA5E9"/><text x="104.4" y="81.8" class="dlbl">15</text><path d="M132.41,46.48 A105,105 0 0 1 150.00,45.00 L150.00,91.00 A59,59 0 0 0 140.12,91.83 Z" fill="#F59E0B"/><text x="143.1" y="68.3" class="dlbl">3</text><text x="150" y="143" class="dctr">109</text><text x="150" y="166" class="dsub">同源题</text></svg>
+<div class="legend">
+<div class="lg"><i style="background:#2563EB"></i><span>A　题干完全相同</span><b>94 题 · 72.3%</b></div>
+<div class="lg"><i style="background:#0EA5E9"></i><span>B　实质相同（改写）</span><b>15 题 · 11.5%</b></div>
+<div class="lg"><i style="background:#F59E0B"></i><span>C　疑似同源</span><b>3 题 · 2.3%</b></div>
+<div class="lg"><i style="background:#DC2626"></i><span>D　题库中查无此题</span><b>18 题 · 13.8%</b></div>
+<div class="lg" style="border-top:1px solid #EEF2F7;padding-top:9px"><span style="font-weight:600">确认同源 A+B</span><b style="color:#059669">83.8%</b></div>
+<div class="lg"><span style="font-weight:600">含疑似 A+B+C</span><b style="color:#F59E0B">86.2%</b></div>
+</div></div>
+<div class="note">加入 DOC 后命中率从 <b>53.1%</b> 提升到 <b>83.8%</b>——两份题库互为补充，
+只有 357 题是重合的，PDF 独有 171 题、DOC 独有 213 题。</div>
+</div>
+
+<div class="card"><h2>样题来源分布</h2><div class="bars"><div class="brow"><div class="blab">样题命中题库</div><div class="btrack">
+        <div class="btot" style="width:100.0%"></div>
+        <div class="bfill" style="width:86.2%;background:#2563EB"></div>
+        <span class="bval">112题 · 86%</span></div></div><div class="brow"><div class="blab">样题独有（题库无）</div><div class="btrack">
+        <div class="btot" style="width:100.0%"></div>
+        <div class="bfill" style="width:13.8%;background:#EF4444"></div>
+        <span class="bval">18题 · 14%</span></div></div></div>
+<div class="note">样题 130 题中 <b>112 题</b>能在两份题库中找到出处，
+仅 <b>18 题</b>（13.8%）是题库之外的新题，例如「2025 年推出的 DeepSeek R1 的最重要突破」。</div>
+</div>
+
+<div class="card"><h2>答案一致性</h2><div class="bars"><div class="brow"><div class="blab">题干完全相同 · 答案一致</div><div class="btrack">
+        <div class="btot" style="width:100.0%"></div>
+        <div class="bfill" style="width:61.7%;background:#10B981"></div>
+        <span class="bval">58题 · 62%</span></div></div><div class="brow"><div class="blab">题干完全相同 · 答案不同</div><div class="btrack">
+        <div class="btot" style="width:100.0%"></div>
+        <div class="bfill" style="width:38.3%;background:#EF4444"></div>
+        <span class="bval">36题 · 38%</span></div></div></div>
+<div class="note">题干完全相同的 94 题里，<b>36 题（38%）</b>答案与题库不同，
+且选项集合基本一字未改——说明是<b>逐题修改答案</b>而非选项重排。抽查多例发现样题的答案<b>往往更合理</b>
+（如「不是评估统计模型拟合优度的指标」题库答 B（MSE），样题改为 A（样本均值），后者才正确）。</div>
+</div>
+
+<div class="card"><h2>关键发现</h2><ul>
+<li><b>两份题库是同一体系的不同版本，不是同一份。</b>PDF 与 DOC 之间只有 68.5% 互相覆盖，
+合并去重后共 <b>741 题</b>（PDF 独有 171，DOC 独有 213）。</li>
+<li><b>样题高度依赖这两份题库。</b>83.8% 的样题可溯源，其中 94 题题干<span class="tag">一字不差</span>。</li>
+<li><b>样题对答案做了系统性修订。</b>36 处答案改动分散在各个选项字母上（A→C 最多见但无统一规律），
+说明是人工逐题订正，不是机械打乱选项顺序。</li>
+<li><b>仍有 18 题是新出的。</b>集中在 2025 年后的大模型进展、聚类/异常值算法细节、办公软件新特性等，需另行准备。</li>
+<li><b>样题自身有瑕疵。</b>单选题 1 与 14 互为近乎重复的题（"重要信息"/"主要信息"一字之差），
+多选题 39 与单选题 90 指向同一道原题；另有错别字（"狡猾设计"应为"交互设计"）和题干截断。</li>
+</ul></div>
+
+<div class="card"><h2>逐题明细（与样题重复的部分）</h2>
+<div class="filters"><button class="on" data-f="all">全部 112</button>
+<button data-f="A">A 完全相同 94</button>
+<button data-f="B">B 实质相同 15</button>
+<button data-f="C">C 疑似同源 3</button>
+<button data-f="X">答案不同</button></div>
+<div class="tbox"><table id="tb"><thead><tr><th>样题</th><th>样题题干 / 选项 / 答案</th><th>判定</th>
+<th>题库出处（PDF / DOC）</th></tr></thead><tbody><tr data-cls="A">
+      <td class="c">单选题 1</td>
+      <td>降维的主要目的是减少数据的复杂性，同时保留数据中的重要信息。( )降维方法是通过将高维数据映射到低维空间来实现的。<div class="opt">A. 主成分分析 / B. 线性判别分析 / C. 决策树 / D. 遗传算法</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选164</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">降维的主要目的是减少数据的复杂性,同时保留数据中的重要信息。（）降维方法是通过将高维数据映射到低维空间来实现的。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 2</td>
+      <td>在进行 CSV 到 XML 数据格式转换时，可以使用 ( ) 工具或语言的库效率最高。<div class="opt">A. Excel / B. Notepad++ / C. Python 的 pandas 库 / D. PowerPoint</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选88</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">在进行CSV到XML数据格式转换时,可以使用（）工具或语言的库效率最高。</div></div><div class="src"><b>PDF 单选141</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">在进行CSV 到XML 数据格式转换时，可以使用() 工具或语言的库效率最高。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 3</td>
+      <td>关于训练集、验证集和测试集的大小比例，( ) 属于常见合理的范围。<div class="opt">A. 训练集 50%，验证集 25%，测试集 25% / B. 训练集 20%，验证集 60%，测试集 20% / C. 训练集 70%，验证集 15%，测试集 15% / D. 训练集 40%，验证集 30%，测试集 30%</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选168</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">关于训练集、验证集和测试集的大小比例,（）属于常见合理的范围。</div></div><div class="src"><b>PDF 多选118</b> 答案 AC　<span class="sim">相似 1.00</span><div class="opt">关于训练集、验证集和测试集的大小比例，() 属于常见合理的范围。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 4</td>
+      <td>业务流程的展现形式与技术通常使用 ( ) 来绘制。<div class="opt">A. 流程图软件 / B. 数据库管理系统 / C. 电子表格软件 / D. 文字处理软件</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选108</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">业务流程的展现形式与技术通常使用（）来绘制。</div></div><div class="src"><b>PDF 单选22</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">业务流程的展现形式与技术通常使用() 来绘制。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 6</td>
+      <td>自动数据处理功能模块在( )环节可以提高数据处理速度。<div class="opt">A. 数据收集 / B. 数据清洗 / C. 数据分析 / D. 数据可视化</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选4</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">自动数据处理功能模块在（）环节可以提高数据处理速度。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 7</td>
+      <td>当面临数据标注不一致的问题时，应该采取的措施是( )。<div class="opt">A. 忽略不一致的数据 / B. 随意修改数据标签 / C. 重新审核和校正数据 / D. 删除所有不一致的数据</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选179</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">当面临数据标注不一致的问题时,应该采取的措施是（）。</div></div><div class="src"><b>PDF 单选73</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">当面临数据标注不一致的问题时，应该采取的措施是() 。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 8</td>
+      <td>当面临大量复杂的数据需要标注时，( ) 助于提高标注效率。<div class="opt">A. 增加标注人员数量 / B. 减少标注任务量 / C. 采用半自动标注工具 / D. 忽略部分复杂数据</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>PDF 单选148</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">当面临大量复杂的数据需要标注时，() 助于提高标注效率。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 9</td>
+      <td>产生式系统通常用于( )领域的知识表示。<div class="opt">A. 自然语言处理 / B. 专家系统 / C. 图像识别 / D. 语音识别</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选185</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">产生式系统通常用于（）领域的知识表示。</div></div><div class="src"><b>PDF 单选205</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">产生式系统通常用于() 领域的知识表示。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 10</td>
+      <td>为了使培训讲义更具吸引力，编写时应注重( )的选取和使用。<div class="opt">A. 案例 / B. 理论 / C. 数据 / D. 图表</div>
+        <div class="ans">答案 D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选119</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">为了使培训讲义更具吸引力,编写时应注重（）的选取和使用。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 11</td>
+      <td>智能交互功能模块的优势在于( )。<div class="opt">A. 提高用户体验 / B. 降低人工成本 / C. 增强系统稳定性 / D. 拓展应用领域</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选9</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">智能交互功能模块的优势在于（）。</div></div><div class="src"><b>PDF 单选117</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">智能交互功能模块的优势在于() 。</div></div><div class="src"><b>PDF 多选130</b> 答案 ABC　<span class="sim">相似 0.88</span><div class="opt">智能交互功能模块的优势是() 。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 12</td>
+      <td>在文本数据拆解过程中，分词的主要目的是 ( )。<div class="opt">A. 将文本切分成单词或短语 / B. 识别文本中的命名实体 / C. 判断文本的情感倾向 / D. 分析文本的语法结构</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选30</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在文本数据拆解过程中,分词的主要目的是（）。</div></div><div class="src"><b>PDF 单选167</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在文本数据拆解过程中，分词的主要目的是() 。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 13</td>
+      <td>ETL工具的使用方法通常包括这些步骤：1. 设计ETL过程；2. 配置ETL工具；3. 执行ETL过程；4. 监控和维护ETL过程。其中，( )是ETL工具使用方法的第一个步骤。<div class="opt">A. 设计ETL过程 / B. 配置ETL工具 / C. 执行ETL过程 / D. 监控和维护ETL过程</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选198</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">ETL工具的使用方法通常包括这些步骤:1.设计ETL过程;2.配置ETL工具;3.执行ETL过程;4.监控和维护ETL过程。其中,（）是ET</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 15</td>
+      <td>根据数据保护与隐私的法规要求，企业在发生数据泄露事件时必须立即采取 ( ) 措施。<div class="opt">A. 通知受影响的用户，报告给相关监管机构 / B. 不通知受影响的用户，自行处理 / C. 进行内部调查 / D. 加强数据安全措施</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选173</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">根据数据保护与隐私的法规要求,企业在发生数据泄露事件时必须立即采取（）措施。</div></div><div class="src"><b>PDF 单选149</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">根据数据保护与隐私的法规要求，企业在发生数据泄露事件时必须立即采取() 措施。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 16</td>
+      <td>在选择数据标注工具时，应该权衡 ( )。<div class="opt">A. 准确性、易用性、成本 / B. 准确性、易用性、速度 / C. 准确性、成本、速度 / D. 易用性、成本、速度</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选26</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在选择数据标注工具时,应该权衡（）。</div></div><div class="src"><b>PDF 多选84</b> 答案 ABCDE　<span class="sim">相似 0.67</span><div class="opt">使用数据标注工具时，应该注意() 。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 18</td>
+      <td>在噪声数据处理中，( ) 主要用于消除信号中的平稳随机噪声。<div class="opt">A. 滤波法 / B. 变换法 / C. 统计法 / D. 模型法</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选20</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在噪声数据处理中,（）主要用于消除信号中的平稳随机噪声。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 19</td>
+      <td>在解决人工智能训练中的数据标注问题时，( ) 不是有效的方法。<div class="opt">A. 提高数据标注的自动化水平 / B. 增加人工标注人员的数量 / C. 引入主动学习的方法优化标注过程 / D. 使用预标注和人工审核结合的半自动标注方法</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>PDF 单选15</b> 答案 D　<span class="sim">相似 1.00</span><div class="opt">在解决人工智能训练中的数据标注问题时，() 不是有效的方法。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 20</td>
+      <td>箱线图法在异常值检测中的作用是( )。<div class="opt">A. 确定数据的分布范围 / B. 识别数据中的异常值 / C. 评估数据的离散程度 / D. 判断数据的集中趋势</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选112</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">箱线图法在异常值检测中的作用是（）。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 22</td>
+      <td>在数据分析的标准流程中，( )步骤是紧接着收集数据之后进行的。<div class="opt">A. 数据清洗 / B. 数据可视化 / C. 数据挖掘 / D. 数据分析</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>PDF 单选136</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在数据分析的标准流程中，() 步骤是紧接着收集数据之后进行的。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 23</td>
+      <td>为了确保抓取的数据质量，( )方法是无效的。<div class="opt">A. 设置合理的抓取间隔 / B. 使用更复杂的抓取规则 / C. 避免抓取重复内容 / D. 减少抓取深度</div>
+        <div class="ans">答案 D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选120</b> 答案 D　<span class="sim">相似 1.00</span><div class="opt">为了确保抓取的数据质量,（）方法是无效的。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 24</td>
+      <td>在知识发现的流程中，( ) 不是由人工智能训练师执行的。<div class="opt">A. 数据分类 / B. 模式识别 / C. 模型调优 / D. 模型开发</div>
+        <div class="ans">答案 D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>PDF 单选220</b> 答案 D　<span class="sim">相似 1.00</span><div class="opt">在知识发现的流程中，() 不是由人工智能训练师执行的。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 28</td>
+      <td>在智能搜索功能模块中，( )技术可以用来构建和维护一个庞大的实体关系网络。<div class="opt">A. 知识图谱 / B. 搜索引擎优化 / C. 个性化推荐 / D. 数据挖掘</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>PDF 单选116</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在智能搜索功能模块中，() 技术可以用来构建和维护一个庞大的实体关系网络。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 29</td>
+      <td>( ) 更适合处理大量非结构化数据。<div class="opt">A. 关系型数据库 / B. 非关系型数据库 / C. 分布式数据库 / D. 内存数据库</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选212</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">（）更适合处理大量非结构化数据。</div></div><div class="src"><b>PDF 单选105</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">() 更适合处理大量非结构化数据。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 30</td>
+      <td>在特征选择方法中，过滤法通常基于( )准则来选择特征。<div class="opt">A. 信息增益 / B. 相关性系数 / C. 方差阈值 / D. 互信息</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选35</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">在特征选择方法中,过滤法通常基于（）准则来选择特征。</div></div><div class="src"><b>PDF 单选224</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在特征选择方法中，过滤法通常基于() 准则来选择特征。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 31</td>
+      <td>在进行数据多样性与公平性测试时，( ) 原则是最重要的。<div class="opt">A. 确保数据的全面性 / B. 关注数据的代表性 / C. 评估算法的公平性 / D. 保证数据的准确性</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选83</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在进行数据多样性与公平性测试时,（）原则是最重要的。</div></div><div class="src"><b>PDF 单选7</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">在进行数据多样性与公平性测试时，() 原则是最重要的。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 32</td>
+      <td>在设计人机交互界面时，( ) 是非常重要的，因为它可以帮助用户快速理解如何使用产品。<div class="opt">A. 直观性 / B. 一致性 / C. 反馈 / D. 效率</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选60</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在设计人机交互界面时,（）是非常重要的,因为它可以帮助用户快速理解如何使用产品。</div></div><div class="src"><b>PDF 单选37</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在设计人机交互界面时，() 是非常重要的，因为它可以帮助用户快速理解如何使用产品。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 33</td>
+      <td>( ) 不是遵纪守法的社会价值体现。<div class="opt">A. 维护社会秩序和稳定 / B. 保障人民权利和自由 / C. 阻碍社会发展和创新 / D. 树立社会道德风尚</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选216</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">（）不是遵纪守法的社会价值体现。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 34</td>
+      <td>为了提高数据抓取效率，可以使用( )技术。<div class="opt">A. 多线程 / B. 单线程 / C. 模拟登录 / D. 验证码识别</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选116</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">为了提高数据抓取效率,可以使用（）技术。</div></div><div class="src"><b>PDF 单选218</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">为了提高数据抓取效率，可以使用() 技术。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 35</td>
+      <td>在强化学习中，( )是指智能体在执行某个动作后获得的反馈信号。<div class="opt">A. 奖励 / B. 惩罚 / C. 风险 / D. 收益</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选69</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在强化学习中,（）是指智能体在执行某个动作后获得的反馈信号。</div></div><div class="src"><b>PDF 单选59</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在强化学习中，() 是指智能体在执行某个动作后获得的反馈信号。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 36</td>
+      <td>( ) 可能被人工智能训练师用于特征工程，以辅助数据的探索性分析。<div class="opt">A. 数据可视化工具 / B. 文本编辑器 / C. 数据库管理系统 / D. 网络浏览器</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选210</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">（）可能被人工智能训练师用于特征工程,以辅助数据的探索性分析。</div></div><div class="src"><b>PDF 单选80</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">() 可能被人工智能训练师用于特征工程，以辅助数据的探索性分析。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 37</td>
+      <td>在深度学习中，用来防止过拟合的方法是( )。<div class="opt">A. 仅使用一层隐藏层 / B. 增加模型的复杂度 / C. 应用早停技术 / D. 减少训练数据量</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选54</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">在深度学习中,用来防止过拟合的方法是（）。</div></div><div class="src"><b>PDF 单选165</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">在深度学习中，用来防止过拟合的方法是() 。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 39</td>
+      <td>DBSCAN算法是一种基于密度的聚类方法，它能够发现任意形状的簇，并且对噪声点具有较好的鲁棒性。DBSCAN算法中的两个重要参数是邻域半径ε和最小点数MinPts，其中ε表示( )。<div class="opt">A. 邻域内的最大距离 / B. 邻域内的最小距离 / C. 邻域内的平均距离 / D. 邻域内的最小点数</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选199</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">DBSCAN算法是一种基于密度的聚类方法,它能够发现任意形状的簇,并且对噪声点具有较好的鲁棒性。DBSCAN算法中的两个重要参数是邻域半径ε</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 40</td>
+      <td>为了确保模型具有较好的泛化能力，通常建议将数据集划分为 ( ) 的比例。<div class="opt">A. 40% 训练集，30% 验证集，30% 测试集 / B. 80% 训练集，10% 验证集，10% 测试集 / C. 40% 训练集，40% 验证集，20% 测试集 / D. 30% 训练集，50% 验证集，20% 测试集</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选124</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">为了确保模型具有较好的泛化能力,通常建议将数据集划分为（）的比例。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 41</td>
+      <td>根据我国《专利法》的规定，申请专利的发明创造在申请日以前六个月内，出现 ( ) 的情况，会丧失新颖性。<div class="opt">A. 他人未经申请人同意而泄露其内容 / B. 在规定的学术会议或者技术会议上首次发表 / C. 在中国政府主办或者承认的国际展览会上首次展出 / D. 他人使用申请人未公开的类似技术方案</div>
+        <div class="ans">答案 D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选172</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">根据我国《专利法》的规定,申请专利的发明创造在申请日以前六个月内,出现（）的情况,会丧失新颖性。</div></div><div class="src"><b>PDF 单选156</b> 答案 D　<span class="sim">相似 1.00</span><div class="opt">根据我国《专利法》的规定，申请专利的发明创造在申请日以前六个月内，出现() 的情况，会丧失新颖性。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 42</td>
+      <td>( )方法常用于解决离散优化问题。<div class="opt">A. 梯度下降法 / B. 遗传算法 / C. 拉格朗日乘数法 / D. 牛顿法</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选213</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">（）方法常用于解决离散优化问题。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 44</td>
+      <td>设计的可用性标准不包括<div class="opt">A. 易用性 / B. 高效性 / C. 错误率 / D. 多样性</div>
+        <div class="ans">答案 D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选142</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">设计的可用性标准不包括（）。</div></div><div class="src"><b>PDF 单选115</b> 答案 D　<span class="sim">相似 1.00</span><div class="opt">设计的可用性标准不包括() 。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 45</td>
+      <td>安全性分析的原理是通过对系统进行( )，以识别潜在的安全威胁和脆弱性，从而采取相应的安全措施来降低风险。<div class="opt">A. 风险评估 / B. 漏洞扫描 / C. 入侵检测 / D. 安全审计</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选190</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">安全性分析的原理是通过对系统进行（）,以识别潜在的安全威胁和脆弱性,从而采取相应的安全措施来降低风险。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 48</td>
+      <td>( ) 不是专利授权的实质性条件。<div class="opt">A. 新颖性 / B. 创造性 / C. 实用性 / D. 美观性</div>
+        <div class="ans">答案 D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选217</b> 答案 D　<span class="sim">相似 1.00</span><div class="opt">（）不是专利授权的实质性条件。</div></div><div class="src"><b>PDF 单选98</b> 答案 D　<span class="sim">相似 1.00</span><div class="opt">() 不是专利授权的实质性条件。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 49</td>
+      <td>在撰写算法测试报告时，( )不是必须的。<div class="opt">A. 测试用例的描述 / B. 测试结果的详细数据 / C. 测试环境的配置信息 / D. 开发者的个人感想</div>
+        <div class="ans">答案 D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选15</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">在撰写算法测试报告时,（）不是必须的。</div></div><div class="src"><b>PDF 单选108</b> 答案 D　<span class="sim">相似 1.00</span><div class="opt">在撰写算法测试报告时，() 不是必须的。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 50</td>
+      <td>在评估数据源的质量时，( )指标不是关键因素。<div class="opt">A. 数据的准确性 / B. 数据的多样性 / C. 数据的时效性 / D. 数据的可解释性</div>
+        <div class="ans">答案 D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选71</b> 答案 D　<span class="sim">相似 1.00</span><div class="opt">在评估数据源的质量时,（）指标不是关键因素。</div></div><div class="src"><b>PDF 单选198</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">在评估数据源的质量时，() 指标不是关键因素。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 51</td>
+      <td>( ) 触控技术可以实现多点触控，提高用户体验。<div class="opt">A. 电容式 / B. 电阻式 / C. 红外线 / D. 超声波</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选214</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">（）触控技术可以实现多点触控,提高用户体验。</div></div><div class="src"><b>PDF 单选210</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">() 触控技术可以实现多点触控，提高用户体验。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 52</td>
+      <td>在数据挖掘方法中，( ) 技术不是分类算法。<div class="opt">A. K - 最近邻 / B. 支持向量机 / C. 随机森林 / D. 关联规则</div>
+        <div class="ans">答案 D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选42</b> 答案 D　<span class="sim">相似 1.00</span><div class="opt">在数据挖掘方法中,（）技术不是分类算法。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 53</td>
+      <td>在进行大规模分布式训练时，( )框架提供了较为成熟的分布式训练支持。<div class="opt">A. TensorFlow / B. PyTorch / C. MXNet / D. Chainer</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>PDF 单选26</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在进行大规模分布式训练时，() 框架提供了较为成熟的分布式训练支持。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 55</td>
+      <td>在数据处理过程中，( ) 步骤不会导致数据丢失或错误。<div class="opt">A. 数据清洗 / B. 数据转换 / C. 数据加载 / D. 数据计算</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选49</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在数据处理过程中,（）步骤不会导致数据丢失或错误。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 56</td>
+      <td>在评估分类模型的准确性时，通常使用( )指标。<div class="opt">A. 均方误差 / B. 准确率 / C. 均方根误差 / D. 对数损失</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选72</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">在评估分类模型的准确性时,通常使用（）指标。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 57</td>
+      <td>自然语言处理中的( )任务通常涉及对文本进行分析，以确定其是积极的、消极的还是中性的。<div class="opt">A. 命名实体识别 / B. 词性标注 / C. 情感分析 / D. 句法分析</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选3</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">自然语言处理中的（）任务通常涉及对文本进行分析,以确定其是积极的、消极的还是中性的。</div></div><div class="src"><b>PDF 单选70</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">自然语言处理中的() 任务通常涉及对文本进行分析，以确定其是积极的、消极的还是中性的。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 58</td>
+      <td>在图像处理中，多维度数据分解技术如 PCA 主要用于 ( )。<div class="opt">A. 提升图像亮度 / B. 压缩图像数据 / C. 增加图像分辨率 / D. 改变图像色彩</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选34</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">在图像处理中,多维度数据分解技术如PCA主要用于（）。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 59</td>
+      <td>在进行人工智能模型调试时，( ) 可推荐用来解决模型性能不佳的问题<div class="opt">A. 立即增加模型的参数数量 / B. 检查模型训练数据的质量，确保没有错误或偏差 / C. 忽略验证集的性能，只关注训练集上的准确率 / D. 停止模型训练，因为认为模型已经足够好</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选86</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">在进行人工智能模型调试时,（）可推荐用来解决模型性能不佳的问题</div></div><div class="src"><b>PDF 单选131</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">在进行人工智能模型调试时，() 可推荐用来解决模型性能不佳的问题</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 60</td>
+      <td>在AI产品的迭代过程中，用户反馈的主要作用是 ( )。<div class="opt">A. 确定产品功能方向 / B. 评估市场营销策略 / C. 优化产品性能和用户体验 / D. 预测未来市场趋势</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选103</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在AI产品的迭代过程中,用户反馈的主要作用是（）。</div></div><div class="src"><b>PDF 单选155</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">在AI 产品的迭代过程中，用户反馈的主要作用是() 。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 61</td>
+      <td>在系统监控中，( ) 工具主要用于实时收集和分析日志数据。<div class="opt">A. ApacheHadoop / B. ELKStack / C. TensorFlow / D. PyTorch</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选28</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">在系统监控中,（）工具主要用于实时收集和分析日志数据。</div></div><div class="src"><b>PDF 单选39</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">在系统监控中，() 工具主要用于实时收集和分析日志数据。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 63</td>
+      <td>网络运营者应当履行的安全保障义务包括 ( )。<div class="opt">A. 不得收集用户个人信息 / B. 向第三方提供用户个人信息 / C. 采取技术措施和其他必要措施，保障网络安全、稳定运行 / D. 未经用户同意不得发布广告</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>PDF 单选112</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">网络运营者应当履行的安全保障义务包括() 。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 64</td>
+      <td>数据标注技术的目的是( )。<div class="opt">A. 提高数据质量 / B. 降低数据成本 / C. 优化数据结构 / D. 简化数据处理流程</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选132</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">数据标注技术的目的是（）。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 65</td>
+      <td>为了使培训讲义更具吸引力，可以采用( )的排版方式。<div class="opt">A. 单一字体 / B. 多种字体 / C. 大量图片 / D. 简单图表</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>PDF 单选202</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">为了使培训讲义更具吸引力，可以采用() 的排版方式。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 67</td>
+      <td>为了实现跨云服务的集成，通常需要使用( )技术。<div class="opt">A. API / B. SDK / C. Web服务 / D. 虚拟化</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>PDF 单选5</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">为了实现跨云服务的集成，通常需要使用() 技术。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 68</td>
+      <td>合规性检查的目的是确保组织的数据处理活动符合 ( ) 的要求。<div class="opt">A. 法律法规 / B. 行业标准 / C. 内部政策 / D. 客户期望</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选166</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">合规性检查的目的是确保组织的数据处理活动符合（）的要求。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 70</td>
+      <td>在项目管理中，( ) 是确保项目顺利进行的关键环节之一。<div class="opt">A. 规划 / B. 执行 / C. 监控 / D. 反馈</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选27</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在项目管理中,（）是确保项目顺利进行的关键环节之一。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 71</td>
+      <td>容器化技术的核心优势是( )。<div class="opt">A. 提供丰富的用户图形界面 / B. 需要占用大量的系统资源 / C. 实现应用的快速部署和高效资源利用 / D. 主要用于网络安全防护</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选144</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">容器化技术的核心优势是（）。</div></div><div class="src"><b>PDF 单选222</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">容器化技术的核心优势是() 。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 72</td>
+      <td>在数据采集流程中，使用( )可以帮助我们实现数据的持久化与高效检索。<div class="opt">A. 数据分析软件 / B. 数据可视化工具 / C. 网络爬虫 / D. 数据存储与管理工具</div>
+        <div class="ans">答案 D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选50</b> 答案 D　<span class="sim">相似 1.00</span><div class="opt">在数据采集流程中,使用（）可以帮助我们实现数据的持久化与高效检索。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 73</td>
+      <td>( )是一种通过邀请领域专家对数据进行评价来评估数据质量的方法。<div class="opt">A. 统计分析法 / B. 逻辑检查法 / C. 专家评估法 / D. 抽样评估法</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选206</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">（）是一种通过邀请领域专家对数据进行评价来评估数据质量的方法。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 74</td>
+      <td>在进行复杂业务系统的改进时，首先应该进行的是 ( )。<div class="opt">A. 分析现有系统的优点和缺点 / B. 确定改进的目标和范围 / C. 设计新的业务流程 / D. 制定详细的实施计划</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选87</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">在进行复杂业务系统的改进时,首先应该进行的是（）。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 75</td>
+      <td>在算法训练过程中，选择合适的模型对于提高模型性能至关重要。( )步骤不属于模型选择过程。<div class="opt">A. 了解不同模型的优缺点 / B. 根据任务需求选择合适的模型 / C. 对模型进行调参优化 / D. 对模型进行评估和比较</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选38</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在算法训练过程中,选择合适的模型对于提高模型性能至关重要。（）步骤不属于模型选择过程。</div></div><div class="src"><b>PDF 单选35</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">在算法训练过程中，选择合适的模型对于提高模型性能至关重要。() 步骤不属于模型选择过程。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 76</td>
+      <td>在了解业务流程现状时，( )是非常重要的信息来源。<div class="opt">A. 企业战略规划文件 / B. 员工访谈记录 / C. 客户反馈信息 / D. 市场调查报告</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>PDF 单选33</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">在了解业务流程现状时，() 是非常重要的信息来源。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 78</td>
+      <td>( ) 是语音交互设计中，人工智能训练师需要特别关注的事项。<div class="opt">A. 系统响应速度 / B. 语音识别准确率 / C. 用户体验调查问卷的满意度评分 / D. 用户对话内容的情感倾向</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选205</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">（）是语音交互设计中,人工智能训练师需要特别关注的事项。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 79</td>
+      <td>在自动化标注中，为了提高标注的准确性，系统可能会利用( )机制来不断优化其标注能力。<div class="opt">A. 随机猜测 / B. 专家系统 / C. 机器学习 / D. 手动校验</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选13</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">在自动化标注中,为了提高标注的准确性,系统可能会利用（）机制来不断优化其标注能力。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 81</td>
+      <td>在数据校验和异常数据检测的方法中，( )方法不可以用于检测数据中的异常值。<div class="opt">A. Z-score方法 / B. IQR方法 / C. DBSCAN方法 / D. K-means方法</div>
+        <div class="ans">答案 D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选41</b> 答案 D　<span class="sim">相似 1.00</span><div class="opt">在数据校验和异常数据检测的方法中,（）方法不可以用于检测数据中的异常值。</div></div><div class="src"><b>PDF 单选123</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">在数据校验和异常数据检测的方法中，() 方法不可以用于检测数据中的异常值。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 82</td>
+      <td>在选择云平台进行人工智能模型训练和部署时，( ) 不是云平台提供的优势或服务。<div class="opt">A. 弹性计算资源，允许用户根据需求快速扩展或缩减计算能力 / B. 预配置的人工智能和机器学习服务，简化模型开发和部署流程 / C. 限制用户访问的地理位置，只能选择特定区域的数据中心 / D. 按需付费模式，用户仅需为实际使用的资源付费</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选25</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">在选择云平台进行人工智能模型训练和部署时,（）不是云平台提供的优势或服务。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 83</td>
+      <td>不是评估统计模型拟合优度的指标是( )。<div class="opt">A. 样本均值 / B. 均方误差MSE / C. 平均绝对误差MAE / D. 残差平方和RSS</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选188</b> 答案 B　<span class="sim">相似 1.00</span><div class="opt">不是评估统计模型拟合优度的指标是（）。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 85</td>
+      <td>流式布局适用于( )场景。<div class="opt">A. 内容较多的页面 / B. 需要保持元素之间相对位置的页面 / C. 需要适应不同屏幕尺寸的页面 / D. 需要展示大量图片的页面</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选160</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">流式布局适用于（）场景。</div></div><div class="src"><b>PDF 单选150</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">流式布局适用于() 场景。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 86</td>
+      <td>在进行数据探索分析时，( ) 可以帮助我们更好地理解数据的结构和特点。<div class="opt">A. 数据可视化 / B. 统计分析 / C. 数据挖掘 / D. 机器学习</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选82</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在进行数据探索分析时,（）可以帮助我们更好地理解数据的结构和特点。</div></div><div class="src"><b>PDF 单选168</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">在进行数据探索分析时，() 可以帮助我们更好地理解数据的结构和特点。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 88</td>
+      <td>( )不是人机交互系统的常见性能评价指标。<div class="opt">A. 响应时间 / B. 用户满意度 / C. 输入设备的价格 / D. 系统稳定性</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选218</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">（）不是人机交互系统的常见性能评价指标。</div></div><div class="src"><b>PDF 单选103</b> 答案 C　<span class="sim">相似 1.00</span><div class="opt">() 不是人机交互系统的常见性能评价指标。</div></div><div class="src"><b>PDF 多选68</b> 答案 ABCDE　<span class="sim">相似 0.71</span><div class="opt">人机交互系统的性能评价标准通常包括() 。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">单选题 90</td>
+      <td>不属于多维度数据分解的主要目的是( )。<div class="opt">A. 简化数据结构 / B. 提高数据处理效率 / C. 增强数据的可解释性 / D. 增加数据的复杂性</div>
+        <div class="ans">答案 D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 单选187</b> 答案 D　<span class="sim">相似 1.00</span><div class="opt">不属于多维度数据分解的主要目的是（）。</div></div><div class="src"><b>PDF 多选87</b> 答案 ABC　<span class="sim">相似 0.90</span><div class="opt">多维度数据分解的主要目的是() 。</div></div><div class="src"><b>PDF 单选23</b> 答案 D　<span class="sim">相似 0.74</span><div class="opt">在图像处理中，多维度数据分解的主要目的是() 。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 1</td>
+      <td>在生成对抗网络中，()方法可以用于提高生成数据的质量。<div class="opt">A. 增加生成器的复杂度 / B. 增加判别器的复杂度 / C. 使用更小的学习率 / D. 使用更大的学习率 / E. 增加训练轮次</div>
+        <div class="ans">答案 A,B,C,E</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 多选43</b> 答案 ABCE　<span class="sim">相似 1.00</span><div class="opt">在生成对抗网络中,（）方法可以用于提高生成数据的质量。</div></div><div class="src"><b>PDF 单选215</b> 答案 A　<span class="sim">相似 0.96</span><div class="opt">在生成对抗网络中，哪些方法可以用于提高生成数据的质量。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 2</td>
+      <td>在进行安全性考虑与设计时，()因素是需要关注的。<div class="opt">A. 用户隐私保护 / B. 数据加密技术 / C. 访问控制策略 / D. 物理安全措施 / E. 网络安全措施</div>
+        <div class="ans">答案 A,B,C,D,E</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 多选70</b> 答案 ABCD　<span class="sim">相似 1.00</span><div class="opt">在进行安全性考虑与设计时,（）因素是需要关注的。</div></div><div class="src"><b>PDF 多选102</b> 答案 ABCDE　<span class="sim">相似 1.00</span><div class="opt">在进行安全性考虑与设计时，() 因素是需要关注的。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 3</td>
+      <td>在实现最优化决策功能模块时，()方法可以被采用。<div class="opt">A. 梯度下降法 / B. 遗传算法 / C. 线性规划 / D. 动态规划 / E. 拉格朗日乘数法</div>
+        <div class="ans">答案 A,B,C,D,E</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>PDF 多选65</b> 答案 ABCDE　<span class="sim">相似 1.00</span><div class="opt">在实现最优化决策功能模块时，() 方法可以被采用。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 5</td>
+      <td>在进行简单业务流程分析时，常用的方法有()。<div class="opt">A. 流程图分析法 / B. SWOT分析法 / C. 5W1H分析法 / D. 实验法 / E. 头脑风暴法</div>
+        <div class="ans">答案 A,C,E</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 多选68</b> 答案 ABCDE　<span class="sim">相似 1.00</span><div class="opt">在进行简单业务流程分析时,常用的方法有（）。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 7</td>
+      <td>处理异常值的常用方法有<div class="opt">A. 删除异常值 / B. 替换异常值为均值或中位数 / C. 对异常值进行变换 / D. 使用机器学习模型进行预测 / E. 替换异常值为最大值</div>
+        <div class="ans">答案 A,B,C,D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 多选143</b> 答案 ABC　<span class="sim">相似 1.00</span><div class="opt">处理异常值的常用方法有（）。</div></div><div class="src"><b>PDF 多选113</b> 答案 ABC　<span class="sim">相似 1.00</span><div class="opt">处理异常值的常用方法有() 。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 8</td>
+      <td>生物特征识别功能模块的特点有<div class="opt">A. 唯一性 / B. 稳定性 / C. 可采集性 / D. 灵活性 / E. 不可复制性</div>
+        <div class="ans">答案 A,B,C,E</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 多选118</b> 答案 ABCDE　<span class="sim">相似 1.00</span><div class="opt">生物特征识别功能模块的特点有（）。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 9</td>
+      <td>时间序列分析在天气预报中的主要作用是<div class="opt">A. 预测未来天气状况 / B. 分析历史气温趋势 / C. 确定天气变化趋势 / D. 评估天气模型的准确性 / E. 优化气象观测网络</div>
+        <div class="ans">答案 A,B,C,D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 多选117</b> 答案 ABCD　<span class="sim">相似 1.00</span><div class="opt">时间序列分析在天气预报中的主要作用是（）。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 10</td>
+      <td>在文本数据预处理中，常见的步骤包括<div class="opt">A. 分词 / B. 去除停用词 / C. 词干提取和词形还原 / D. 将文本转换为数字向量表示 / E. 增加文本的字数</div>
+        <div class="ans">答案 A,B,C,D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 多选28</b> 答案 ABCD　<span class="sim">相似 1.00</span><div class="opt">在文本数据预处理中,常见的步骤包括（）。</div></div><div class="src"><b>PDF 多选81</b> 答案 ABCD　<span class="sim">相似 1.00</span><div class="opt">在文本数据预处理中，常见的步骤包括() 。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 11</td>
+      <td>关于代码优化，可以提升程序运行效率的实践是<div class="opt">A. 使用全局变量而非局部变量 / B. 避免不必要的循环和递归调用 / C. 选择更快的算法和数据结构 / D. 减少函数调用开销 / E. 通过增加冗余代码来提高可读性</div>
+        <div class="ans">答案 B,C,D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>PDF 多选129</b> 答案 BCD　<span class="sim">相似 1.00</span><div class="opt">关于代码优化，可以提升程序运行效率的实践是() 。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 13</td>
+      <td>()标注工具可以帮助提高数据标注的效率和质量。<div class="opt">A. LabelImg / B. RectLabel / C. VGGImageAnnotator / D. Photoshop / E. Coreldraw</div>
+        <div class="ans">答案 A,B,C</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 多选165</b> 答案 ABCD　<span class="sim">相似 1.00</span><div class="opt">（）标注工具可以帮助提高数据标注的效率和质量。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 15</td>
+      <td>算法安全性测试的目的是<div class="opt">A. 检查算法的正确性 / B. 评估算法的性能 / C. 确保算法的机密性 / D. 检测算法的漏洞和缺陷 / E. 验证算法的可用性</div>
+        <div class="ans">答案 C,D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 多选100</b> 答案 AD　<span class="sim">相似 1.00</span><div class="opt">算法安全性测试的目的是（）</div></div><div class="src"><b>PDF 单选31</b> 答案 D　<span class="sim">相似 1.00</span><div class="opt">算法安全性测试的目的是()</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 17</td>
+      <td>在大规模数据集中，()策略可以有效处理缺失值，同时尽量减少信息损失。<div class="opt">A. 使用数据集的全局均值填充 / B. 利用邻近观测值进行局部插补 / C. 基于模型的预测填充 / D. 采用多重插补技术 / E. 删除所有含有缺失值的记录</div>
+        <div class="ans">答案 A,B,C,D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 多选74</b> 答案 ABCD　<span class="sim">相似 1.00</span><div class="opt">在大规模数据集中,（）策略可以有效处理缺失值,同时尽量减少信息损失。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 20</td>
+      <td>业务模块构建方法的原则包括()。<div class="opt">A. 模块化设计 / B. 高内聚低耦合 / C. 单一职责原则 / D. 开闭原则 / E. 依赖倒置原则</div>
+        <div class="ans">答案 A,B,C,D,E</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 多选89</b> 答案 ABCDE　<span class="sim">相似 1.00</span><div class="opt">业务模块构建方法的原则包括（）。</div></div><div class="src"><b>PDF 多选120</b> 答案 ABCDE　<span class="sim">相似 1.00</span><div class="opt">业务模块构建方法的原则包括() 。</div></div><div class="src"><b>PDF 单选71</b> 答案 C　<span class="sim">相似 0.72</span><div class="opt">业务模块构建方法强调的是() 。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 21</td>
+      <td>实施人工智能项目时()因素被认为是至关重要的成功要素。<div class="opt">A. 数据质量和数量 / B. 强大的计算能力 / C. 高级算法和模型 / D. 用户界面设计 / E. 法律法规遵守</div>
+        <div class="ans">答案 A,B,E</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 多选116</b> 答案 ABCDE　<span class="sim">相似 1.00</span><div class="opt">实施人工智能项目时（）因素被认为是至关重要的成功要素。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 23</td>
+      <td>在人工智能系统测试阶段应该包括对算法决策过程的伦理评估，确保<div class="opt">A. 算法的公正性 / B. 算法的鲁棒性 / C. 算法的透明性 / D. 算法的可解释性 / E. 算法的高可用</div>
+        <div class="ans">答案 A,B,C,D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 多选54</b> 答案 ABCD　<span class="sim">相似 1.00</span><div class="opt">在人工智能系统测试阶段应该包括对算法决策过程的伦理评估,确保（）。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 25</td>
+      <td>在选择统计模型时，应该被考虑的因素是<div class="opt">A. 模型的复杂性 / B. 数据的可用性 / C. 模型的预测能力 / D. 模型的易解释性 / E. 模型的训练时间</div>
+        <div class="ans">答案 A,B,C,D,E</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 多选20</b> 答案 ABCD　<span class="sim">相似 1.00</span><div class="opt">在选择统计模型时,应该被考虑的因素是（）。</div></div><div class="src"><b>PDF 多选1</b> 答案 ABCD　<span class="sim">相似 1.00</span><div class="opt">在选择统计模型时，应该被考虑的因素是() 。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 27</td>
+      <td>业务流程管理BPM的核心要素包括()。<div class="opt">A. 流程设计 / B. 流程执行 / C. 流程监控 / D. 流程分析 / E. 流程优化</div>
+        <div class="ans">答案 A,B,C,D,E</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 多选91</b> 答案 ABCDE　<span class="sim">相似 1.00</span><div class="opt">业务流程管理BPM的核心要素包括（）。</div></div><div class="src"><b>PDF 多选72</b> 答案 ABCDE　<span class="sim">相似 1.00</span><div class="opt">业务流程管理BPM 的核心要素包括() 。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 28</td>
+      <td>业务数据分析工具通常可以分为<div class="opt">A. 报表生成工具 / B. 数据挖掘工具 / C. 可视化工具 / D. 统计分析工具 / E. 数据脱敏工具</div>
+        <div class="ans">答案 A,B,C,D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 多选88</b> 答案 ABCD　<span class="sim">相似 1.00</span><div class="opt">业务数据分析工具通常可以分为（）。</div></div><div class="src"><b>PDF 多选27</b> 答案 ABCD　<span class="sim">相似 1.00</span><div class="opt">业务数据分析工具通常可以分为() 。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 29</td>
+      <td>在数据采集和处理流程中，常见的错误包括<div class="opt">A. 数据格式不一致 / B. 数据缺失 / C. 数据处理速度慢 / D. 数据存储不安全 / E. 数据分析不准确</div>
+        <div class="ans">答案 A,B,D,E</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>PDF 多选19</b> 答案 ABCDE　<span class="sim">相似 1.00</span><div class="opt">在数据采集和处理流程中，常见的错误包括() 。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 34</td>
+      <td>在进行数据源选择时，()可以帮助我们找到合适的数据源。<div class="opt">A. 使用搜索引擎查找相关数据 / B. 咨询专业人士或行业专家 / C. 参考权威机构发布的数据报告 / D. 通过社交媒体平台获取数据 / E. 尝试多种数据源并进行比较</div>
+        <div class="ans">答案 A,B,C,D,E</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>PDF 多选11</b> 答案 ABCDE　<span class="sim">相似 1.00</span><div class="opt">在进行数据源选择时，() 可以帮助我们找到合适的数据源。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 35</td>
+      <td>用户需求分析的目的是<div class="opt">A. 了解用户的需求和期望 / B. 评估产品的市场定位 / C. 制定产品的开发计划 / D. 优化产品的用户体验 / E. 预测市场趋势</div>
+        <div class="ans">答案 A,B,C,D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 多选84</b> 答案 AB　<span class="sim">相似 1.00</span><div class="opt">用户需求分析的目的是（）。</div></div><div class="src"><b>PDF 单选219</b> 答案 A　<span class="sim">相似 1.00</span><div class="opt">用户需求分析的目的是() 。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 37</td>
+      <td>特征选择的主要目标是<div class="opt">A. 增加模型的复杂性 / B. 减少过拟合的风险 / C. 提高模型的预测性能 / D. 降低计算成本 / E. 使模型更易于解释</div>
+        <div class="ans">答案 B,C,D,E</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>DOC 多选99</b> 答案 BCDE　<span class="sim">相似 1.00</span><div class="opt">特征选择的主要目标是（）。</div></div><div class="src"><b>PDF 单选110</b> 答案 D　<span class="sim">相似 0.67</span><div class="opt">() 不是特征选择的主要方法。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 39</td>
+      <td>在图像处理中，多维度数据分解的主要目的是<div class="opt">A. 提高图像质量 / B. 提高图像处理的效率 / C. 降低图像存储成本 / D. 提取有用的图像信息 / E. 降低计算复杂度</div>
+        <div class="ans">答案 B,C,D,E</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>PDF 单选23</b> 答案 D　<span class="sim">相似 1.00</span><div class="opt">在图像处理中，多维度数据分解的主要目的是() 。</div></div><div class="src"><b>PDF 多选87</b> 答案 ABC　<span class="sim">相似 0.81</span><div class="opt">多维度数据分解的主要目的是() 。</div></div><div class="src"><b>DOC 单选187</b> 答案 D　<span class="sim">相似 0.74</span><div class="opt">不属于多维度数据分解的主要目的是（）。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="A">
+      <td class="c">多选题 40</td>
+      <td>在设计数据存储解决方案时，考虑数据的持久化，()可以用来实现数据的持久化。<div class="opt">A. 使用事务来确保数据的一致性 / B. 实施RAID技术以提高数据冗余和可用性 / C. 采用实时内存数据库加速数据访问 / D. 使用数据备份和恢复策略 / E. 应用数据加密技术保护数据安全</div>
+        <div class="ans">答案 A,B,D</div></td>
+      <td><span class="bdg" style="background:#2563EB">A</span>
+        <div class="sim">1.00</div></td>
+      <td><div class="src"><b>PDF 多选123</b> 答案 ABD　<span class="sim">相似 1.00</span><div class="opt">在设计数据存储解决方案时，考虑数据的持久化，() 可以用来实现数据的持久化。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="B">
+      <td class="c">单选题 14</td>
+      <td>降维的主要目的是减少数据的复杂性，同时保留数据的主要信息。( ) 降维方法是通过将高维数据映射到低维空间来实现的。<div class="opt">A. 主成分分析 / B. 线性判别分析 / C. 决策树 / D. 遗传算法</div>
+        <div class="ans">答案 A</div></td>
+      <td><span class="bdg" style="background:#0EA5E9">B</span>
+        <div class="sim">0.97</div></td>
+      <td><div class="src"><b>DOC 单选164</b> 答案 A　<span class="sim">相似 0.97</span><div class="opt">降维的主要目的是减少数据的复杂性,同时保留数据中的重要信息。（）降维方法是通过将高维数据映射到低维空间来实现的。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="B">
+      <td class="c">单选题 25</td>
+      <td>网络拓扑结构对故障恢复策略性设计的影响主要体现在<div class="opt">A. 数据传输速度 / B. 系统容错能力 / C. 资源利用率 / D. 系统安全性</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#0EA5E9">B</span>
+        <div class="sim">0.96</div></td>
+      <td><div class="src"><b>PDF 单选146</b> 答案 B　<span class="sim">相似 0.96</span><div class="opt">网络拓扑结构对故障恢复策略性设计的影响主要体现在() 方面。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="B">
+      <td class="c">单选题 38</td>
+      <td>人工智能测试的主要目的是 ( )。<div class="opt">A. 降低研发成本 / B. 提升算法的计算速度 / C. 确保 AI 系统的功能和性能符合预期 / D. 增加 AI 系统的数据输入量</div>
+        <div class="ans">答案 C</div></td>
+      <td><span class="bdg" style="background:#0EA5E9">B</span>
+        <div class="sim">0.71</div></td>
+      <td><div class="src"><b>PDF 多选128</b> 答案 ABCD　<span class="sim">相似 0.83</span><div class="opt">人工智能测试的主要目包括() 。</div></div><div class="src"><b>DOC 单选65</b> 答案 C　<span class="sim">相似 0.71</span><div class="opt">在人工智能系统测试中,用户反馈集成的主要目的是（）。</div></div><div class="src"><b>PDF 单选121</b> 答案 C　<span class="sim">相似 0.71</span><div class="opt">在人工智能系统测试中，用户反馈集成的主要目的是() 。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="B">
+      <td class="c">单选题 43</td>
+      <td>虚拟现实 VR 狡猾设计中，为了提高用户的操作效率，应该采用 ( )输入设备。<div class="opt">A. 游戏手柄 / B. 运动控制器 / C. 头戴式显示器 / D. 触觉反馈手套</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#0EA5E9">B</span>
+        <div class="sim">0.93</div></td>
+      <td><div class="src"><b>PDF 单选27</b> 答案 B　<span class="sim">相似 0.93</span><div class="opt">虚拟现实VR 交互设计中，为了提高用户的操作效率，应该采用() 输入设备。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="B">
+      <td class="c">单选题 54</td>
+      <td>( )是一种常见的图像变换技术，它可以改变图像的大小和形状。<div class="opt">A. 裁剪 / B. 缩放 / C. 旋转 / D. 平移</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#0EA5E9">B</span>
+        <div class="sim">0.86</div></td>
+      <td><div class="src"><b>PDF 单选201</b> 答案 B　<span class="sim">相似 0.86</span><div class="opt">在数据增强方法中，() 是一种常见的图像变换技术，它可以改变图像的大小和形状。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="B">
+      <td class="c">单选题 89</td>
+      <td>代码审计与优化的重要性不包括<div class="opt">A. 提高代码可读性，便于团队协作 / B. 彻底消除所有软件缺陷 / C. 发现并修复潜在的安全漏洞 / D. 优化代码性能，提升系统响应速度</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#0EA5E9">B</span>
+        <div class="sim">0.78</div></td>
+      <td><div class="src"><b>DOC 单选182</b> 答案 A　<span class="sim">相似 0.78</span><div class="opt">代码审计与优化对于软件开发过程的重要性不包括（）。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="B">
+      <td class="c">多选题 12</td>
+      <td>在进行数据探索分析时，通常会关注<div class="opt">A. 数据的完整性 / B. 数据的准确性 / C. 数据的时效性 / D. 数据的可解释性 / E. 数据的多样性</div>
+        <div class="ans">答案 A,B,C,D,E</div></td>
+      <td><span class="bdg" style="background:#0EA5E9">B</span>
+        <div class="sim">0.86</div></td>
+      <td><div class="src"><b>DOC 多选63</b> 答案 ABCDE　<span class="sim">相似 0.86</span><div class="opt">在进行数据探索分析时,通常会关注（）方面的信息。</div></div><div class="src"><b>PDF 单选207</b> 答案 A　<span class="sim">相似 0.81</span><div class="opt">在进行数据探索分析时，通常会关注哪些方面的信息。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="B">
+      <td class="c">多选题 14</td>
+      <td>故障恢复的策略性设计需要考虑<div class="opt">A. 备份策略 / B. 恢复策略 / C. 容灾策略 / D. 监控策略 / E. 优化策略</div>
+        <div class="ans">答案 A,B,C,D</div></td>
+      <td><span class="bdg" style="background:#0EA5E9">B</span>
+        <div class="sim">0.93</div></td>
+      <td><div class="src"><b>PDF 多选74</b> 答案 ABCD　<span class="sim">相似 0.93</span><div class="opt">故障恢复的策略性设计需要考虑() 方面。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="B">
+      <td class="c">多选题 16</td>
+      <td>在进行数据多样性与公平性测试时，必须遵守的原则是<div class="opt">A. 确保数据集覆盖所有关键特征 / B. 数据应反映真实世界的分布 / C. 避免数据集中存在偏见或歧视 / D. 数据集必须包含足够的异常值 / E. 数据集应定期更新以反映最新趋势</div>
+        <div class="ans">答案 A,B,C,E</div></td>
+      <td><span class="bdg" style="background:#0EA5E9">B</span>
+        <div class="sim">0.90</div></td>
+      <td><div class="src"><b>DOC 多选64</b> 答案 ABCD　<span class="sim">相似 0.90</span><div class="opt">在进行数据多样性测试时,必须遵守的原则是（）。</div></div><div class="src"><b>PDF 多选17</b> 答案 ABC　<span class="sim">相似 0.90</span><div class="opt">在进行数据多样性测试时，必须遵守的原则是() 。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="B">
+      <td class="c">多选题 19</td>
+      <td>数据分析的标准流程通常包括<div class="opt">A. 数据收集 / B. 数据清洗 / C. 数据可视化 / D. 数据挖掘 / E. 数据分析报告</div>
+        <div class="ans">答案 A,B,C,D,E</div></td>
+      <td><span class="bdg" style="background:#0EA5E9">B</span>
+        <div class="sim">0.93</div></td>
+      <td><div class="src"><b>DOC 多选107</b> 答案 ABCDE　<span class="sim">相似 0.93</span><div class="opt">数据分析的标准流程通常包括（）步骤。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="B">
+      <td class="c">多选题 22</td>
+      <td>在处理用户数据时，公司应该遵循<div class="opt">A. 最小化 / B. 有目的性 / C. 公开透明 / D. 灵活性 / E. 用户授权</div>
+        <div class="ans">答案 A,B,C,E</div></td>
+      <td><span class="bdg" style="background:#0EA5E9">B</span>
+        <div class="sim">0.93</div></td>
+      <td><div class="src"><b>DOC 多选75</b> 答案 ABCD　<span class="sim">相似 0.93</span><div class="opt">在处理用户数据时,公司应该遵循（）原则。</div></div><div class="src"><b>PDF 多选92</b> 答案 ABCDE　<span class="sim">相似 0.93</span><div class="opt">在处理用户数据时，公司应该遵循() 原则。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="B">
+      <td class="c">多选题 30</td>
+      <td>一个良好的测试用例通常具备<div class="opt">A. 明确性 / B. 完整性 / C. 可重复性 / D. 必要性 / E. 无限性</div>
+        <div class="ans">答案 A,B,C,D</div></td>
+      <td><span class="bdg" style="background:#0EA5E9">B</span>
+        <div class="sim">0.90</div></td>
+      <td><div class="src"><b>DOC 多选87</b> 答案 ABCD　<span class="sim">相似 0.90</span><div class="opt">一个良好的测试用例通常具备（）的属性。</div></div><div class="src"><b>PDF 多选63</b> 答案 ABC　<span class="sim">相似 0.90</span><div class="opt">一个良好的测试用例通常具备() 的属性。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="B">
+      <td class="c">多选题 32</td>
+      <td>计算机视觉涉及<div class="opt">A. 图像分类 / B. 目标跟踪 / C. 视频压缩 / D. 图像修复 / E. 视频编辑</div>
+        <div class="ans">答案 A,B,D,E</div></td>
+      <td><span class="bdg" style="background:#0EA5E9">B</span>
+        <div class="sim">0.78</div></td>
+      <td><div class="src"><b>DOC 多选126</b> 答案 ABCDE　<span class="sim">相似 0.78</span><div class="opt">计算机视觉涉及（）主要任务。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="B">
+      <td class="c">多选题 33</td>
+      <td>在应用维度约简技术进行数据压缩时，需要考虑<div class="opt">A. 数据的编码格式 / B. 数据的维度 / C. 数据的稀疏性 / D. 数据的分布情况 / E. 数据的噪声水平</div>
+        <div class="ans">答案 B,C,D,E</div></td>
+      <td><span class="bdg" style="background:#0EA5E9">B</span>
+        <div class="sim">0.95</div></td>
+      <td><div class="src"><b>DOC 多选16</b> 答案 BCD　<span class="sim">相似 0.95</span><div class="opt">在应用维度约简技术进行数据压缩时,（）因素需要考虑。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="B">
+      <td class="c">多选题 36</td>
+      <td>在算法训练过程中，()步骤是必不可少的。<div class="opt">A. 数据收集 / B. 特征工程 / C. 模型选择 / D. 模型训练 / E. 模型评估</div>
+        <div class="ans">答案 A,B,C,D,E</div></td>
+      <td><span class="bdg" style="background:#0EA5E9">B</span>
+        <div class="sim">0.88</div></td>
+      <td><div class="src"><b>DOC 多选58</b> 答案 ABCDE　<span class="sim">相似 0.88</span><div class="opt">在模型训练过程中,（）步骤是必不可少的。</div></div><div class="src"><b>PDF 多选82</b> 答案 ABCDE　<span class="sim">相似 0.88</span><div class="opt">在模型训练过程中，() 步骤是必不可少的。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="C">
+      <td class="c">单选题 80</td>
+      <td>神经网络中的激活函数的作用是( )。<div class="opt">A. 增加网络的复杂性 / B. 提高网络的泛化能力 / C. 减少网络的训练时间 / D. 增强网络的表达能力</div>
+        <div class="ans">答案 d</div></td>
+      <td><span class="bdg" style="background:#F59E0B">C</span>
+        <div class="sim">0.76</div></td>
+      <td><div class="src"><b>PDF 多选64</b> 答案 AC　<span class="sim">相似 0.76</span><div class="opt">神经网络分析中，激活机制的作用是() 。</div></div><div class="ans bad">答案与样题不同</div></td></tr><tr data-cls="C">
+      <td class="c">单选题 84</td>
+      <td>数据归一化处理的定义是 ( )。<div class="opt">A. 将数据集中的所有值转换为相同的格式。 / B. 将数据集中的所有值缩放到一个特定的小范围，通常是 0 到 1 之间。 / C. 将数据集中的所有值增加到最大可能的值。 / D. 将数据集中的所有值减少到最小可能的值。</div>
+        <div class="ans">答案 B</div></td>
+      <td><span class="bdg" style="background:#F59E0B">C</span>
+        <div class="sim">0.39</div></td>
+      <td><div class="src"><b>PDF 判断182</b> 答案 B　<span class="sim">相似 0.39</span><div class="opt">数据归一化处理的目的是为了改变数据的类型，使其能够适配不同的机器学习算法。</div></div><div class="ans ">答案一致</div></td></tr><tr data-cls="C">
+      <td class="c">多选题 4</td>
+      <td>在设计输入与输出系统时，需要考虑的因素包括<div class="opt">A. 用户的需求 / B. 系统的性能 / C. 数据的准确性 / D. 设备的兼容性 / E. 环境的适应性</div>
+        <div class="ans">答案 A,B,C,D,E</div></td>
+      <td><span class="bdg" style="background:#F59E0B">C</span>
+        <div class="sim">0.62</div></td>
+      <td><div class="src"><b>DOC 多选46</b> 答案 ABCDE　<span class="sim">相似 0.62</span><div class="opt">在设计智能解决方案时,需要考虑的要素包括（）。</div></div><div class="src"><b>PDF 多选47</b> 答案 ABCDE　<span class="sim">相似 0.62</span><div class="opt">在设计智能解决方案时，需要考虑的要素包括() 。</div></div><div class="ans ">答案一致</div></td></tr></tbody></table></div>
+<div class="note">完整结构化数据见 <b>题目对照结果.json</b>：<code>matched_with_xlsx</code>（重复题，选项与答案取样题）、
+<code>unique_not_in_xlsx</code>（题库中不重复的 631 题）、<code>xlsx_only_not_in_banks</code>（样题独有 18 题）。</div>
+</div>
+</div>
+<script>
+const tb=document.getElementById('tb');
+document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+ const f=b.dataset.f;[...tb.tBodies[0].rows].forEach(r=>{
+  r.style.display = f==='all'?'' : f==='X'? (r.cells[3].innerText.includes('答案与样题不同')) : r.dataset.cls===f ? '' : 'none';});});
+</script></body></html>
