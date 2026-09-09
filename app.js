@@ -3,22 +3,220 @@
   const validIds = new Set(bank.map((q) => q.id));
   const memorizeProgressKey = 'ai-quiz-memorize-progress';
   const memorizeActiveKey = 'ai-quiz-memorize-active';
-  const storedStats = JSON.parse(localStorage.getItem('ai-quiz-stats') || '{}');
-  const state = { source: 'theory', filter: 'all', studyMode: localStorage.getItem(memorizeActiveKey) === 'true', items: [], index: 0, selected: new Set(), submitted: false, random: false, instant: true, stats: Object.fromEntries(Object.entries(storedStats).filter(([id]) => validIds.has(id))) };
+  const favoriteKey = 'ai-quiz-favorites';
+  const readStored = (key, fallback) => { try { return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback)); } catch { return fallback; } };
+  const storedStats = readStored('ai-quiz-stats', {});
+  const storedFavorites = readStored(favoriteKey, []);
+  const state = {
+    source: 'theory', filter: 'all', studyMode: localStorage.getItem(memorizeActiveKey) === 'true',
+    items: [], index: 0, selected: new Set(), submitted: false, random: false, instant: true,
+    stats: Object.fromEntries(Object.entries(storedStats).filter(([id]) => validIds.has(id))),
+    favorites: new Set(storedFavorites.filter((id) => validIds.has(id))),
+  };
   localStorage.setItem('ai-quiz-stats', JSON.stringify(state.stats));
-  const $ = (s) => document.querySelector(s);
-  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  localStorage.setItem(favoriteKey, JSON.stringify([...state.favorites]));
+
+  const $ = (selector) => document.querySelector(selector);
+  const esc = (value) => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
   const current = () => state.items[state.index];
   const typeName = (type) => ({ single: '单选题', multiple: '多选题' }[type] || type);
   const sourceName = (source) => ({ theory: '理论题库', sample: '样题补充', all: '全部题目' }[source] || source);
-  function save() { localStorage.setItem('ai-quiz-stats', JSON.stringify(state.stats)); updateSummary(); }
-  function updateSummary() { const vals = Object.values(state.stats), done = vals.length, good = vals.filter((v) => v.correct).length; $('#doneCount').textContent = done; $('#accuracy').textContent = done ? Math.round(good / done * 100) + '%' : '--'; $('#wrongCount').textContent = vals.filter((v) => !v.correct).length; }
-  function makeItems() { let list = state.studyMode ? [...bank].sort((a, b) => (a.type === b.type ? 0 : a.type === 'single' ? -1 : 1)) : bank.filter((q) => { const sourceOk = state.source === 'all' || q.source === state.source; const filterOk = state.filter === 'all' || q.type === state.filter || (state.filter === 'wrong' && state.stats[q.id] && !state.stats[q.id].correct); return sourceOk && filterOk; }); if (state.random && !state.studyMode) list = [...list].sort(() => Math.random() - 0.5); state.items = list; const savedProgressId = state.studyMode ? localStorage.getItem(memorizeProgressKey) : null; const savedIndex = savedProgressId ? list.findIndex((q) => q.id === savedProgressId) : -1; state.index = savedIndex >= 0 ? savedIndex : Math.min(Math.max(state.index, 0), Math.max(list.length - 1, 0)); state.selected = new Set(); state.submitted = false; render(); }
-  function render() { const q = current(), total = state.items.length; if (state.studyMode && q) { localStorage.setItem(memorizeActiveKey, 'true'); localStorage.setItem(memorizeProgressKey, q.id); } $('#allCount').textContent = bank.length; $('#theoryCount').textContent = bank.filter((x) => x.source === 'theory').length; $('#sampleCount').textContent = bank.filter((x) => x.source === 'sample').length; $('#singleCount').textContent = bank.filter((x) => x.type === 'single').length; $('#multipleCount').textContent = bank.filter((x) => x.type === 'multiple').length; $('#modeLabel').textContent = state.studyMode ? '背题模式 · 全部题目' : `${sourceName(state.source)}${state.filter === 'all' ? '' : ' · ' + (state.filter === 'wrong' ? '错题重练' : typeName(state.filter))}`; $('#progressText').textContent = total ? `${state.index + 1} / ${total}` : '0 / 0'; $('#progressBar').style.width = total ? ((state.index + 1) / total * 100) + '%' : '0%'; $('#paletteMeta').textContent = `${state.items.filter((item) => state.stats[item.id]).length} / ${total}`; document.querySelectorAll('.nav-btn').forEach((b) => b.classList.toggle('active', b.dataset.mode === 'memorize' ? state.studyMode : (b.dataset.source ? b.dataset.source === state.source && !state.studyMode : b.dataset.filter === state.filter && !state.studyMode))); renderCard(q); renderPalette(); }
-  function renderCard(q) { const card = $('#questionCard'); if (!q) { card.innerHTML = '<div class="empty-state"><div><b>暂无题目</b><span>当前筛选条件下没有可显示的题目</span></div></div>'; $('#prevBtn').disabled = true; $('#nextBtn').disabled = true; return; } $('#prevBtn').disabled = state.index === 0; $('#nextBtn').disabled = state.index === state.items.length - 1; const stat = state.stats[q.id], answered = state.submitted, reveal = state.studyMode || (answered && state.instant), singleChoice = q.type !== 'multiple'; card.innerHTML = `<div class="question-meta"><span class="q-index">第 ${q.number} 题</span><span class="type-tag">${q.typeLabel || typeName(q.type)}</span><span class="type-tag source-tag">${q.sourceLabel || sourceName(q.source)}</span></div><h2 class="question-title">${esc(q.question)}</h2><div class="options">${q.options.map((o) => { const sel = state.selected.has(o.key), right = reveal && q.answer.includes(o.key), bad = reveal && sel && !right; return `<label class="option ${sel ? 'selected' : ''} ${right ? 'correct' : ''} ${bad ? 'incorrect' : ''}"><input type="checkbox" data-key="${o.key}" ${sel ? 'checked' : ''} ${state.studyMode || answered ? 'disabled' : ''}><span class="option-key">${o.key}</span><span class="option-text">${esc(o.text)}</span></label>`; }).join('')}</div>${reveal ? `<div class="result-note ${stat && !stat.correct ? 'error' : ''}"><strong>${state.studyMode ? '正确答案' : (stat && stat.correct ? '回答正确' : '回答错误')}</strong><span> · 正确答案：${q.answer.join('、')}</span></div>` : ''}`; if (!answered && !state.studyMode) card.querySelectorAll('.option').forEach((el) => el.addEventListener('click', () => { const key = el.querySelector('input').dataset.key; if (singleChoice) { state.selected = new Set([key]); finalizeCurrent(); render(); } else { state.selected.has(key) ? state.selected.delete(key) : state.selected.add(key); renderCard(q); } })); }
-  function finalizeCurrent() { const q = current(); if (!q || state.studyMode || state.submitted || !state.selected.size) return false; const correct = q.answer.length === state.selected.size && q.answer.every((x) => state.selected.has(x)); state.stats[q.id] = { correct, at: Date.now() }; state.submitted = true; save(); return true; }
-  function renderPalette() { const p = $('#palette'); let lastType = ''; p.innerHTML = state.items.map((q, i) => { const s = state.stats[q.id], cl = i === state.index ? 'current' : s ? (s.correct ? 'done' : 'wrong') : ''; const heading = state.studyMode && q.type !== lastType ? `<div class="palette-group-label">${typeName(q.type)}<span>${state.items.filter((item) => item.type === q.type).length} 题</span></div>` : ''; lastType = q.type; return `${heading}<button class="${cl}" data-i="${i}">${i + 1}</button>`; }).join(''); p.querySelectorAll('button').forEach((b) => b.onclick = () => { finalizeCurrent(); state.index = +b.dataset.i; state.selected = new Set(); state.submitted = false; render(); }); }
-  $('#prevBtn').onclick = () => { if (state.index > 0) { finalizeCurrent(); state.index--; state.selected = new Set(); state.submitted = false; render(); } }; $('#nextBtn').onclick = () => { if (state.index < state.items.length - 1) { finalizeCurrent(); state.index++; state.selected = new Set(); state.submitted = false; render(); } };
-  document.querySelectorAll('.nav-btn').forEach((b) => b.onclick = () => { finalizeCurrent(); if (b.dataset.mode === 'memorize') { state.studyMode = true; state.index = 0; makeItems(); return; } state.studyMode = false; localStorage.removeItem(memorizeActiveKey); if (b.dataset.source) { state.source = b.dataset.source; state.filter = 'all'; } else { state.filter = b.dataset.filter; } state.index = 0; makeItems(); });
-  $('#randomToggle').onchange = (e) => { state.random = e.target.checked; state.index = 0; makeItems(); }; $('#instantToggle').onchange = (e) => { state.instant = e.target.checked; if (state.submitted) render(); }; $('#resetBtn').onclick = () => { if (confirm('确定清空本地答题记录吗？')) { state.stats = {}; save(); makeItems(); } }; document.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') $('#prevBtn').click(); if (e.key === 'ArrowRight') $('#nextBtn').click(); }); updateSummary(); makeItems();
+
+  function saveStats() {
+    localStorage.setItem('ai-quiz-stats', JSON.stringify(state.stats));
+    updateSummary();
+  }
+
+  function saveFavorites() {
+    localStorage.setItem(favoriteKey, JSON.stringify([...state.favorites]));
+    updateSummary();
+  }
+
+  function updateSummary() {
+    const results = Object.values(state.stats);
+    const completed = results.length;
+    const correct = results.filter((item) => item.correct).length;
+    $('#doneCount').textContent = completed;
+    $('#accuracy').textContent = completed ? `${Math.round(correct / completed * 100)}%` : '--';
+    $('#wrongCount').textContent = results.filter((item) => !item.correct).length;
+    $('#favoriteCount').textContent = state.favorites.size;
+  }
+
+  function makeItems() {
+    let list;
+    if (state.studyMode) {
+      list = [...bank].sort((a, b) => (a.type === b.type ? 0 : a.type === 'single' ? -1 : 1));
+    } else {
+      list = bank.filter((question) => {
+        const sourceMatches = state.filter === 'favorite'
+          || state.source === 'all'
+          || question.source === state.source;
+        const filterMatches = state.filter === 'all'
+          || question.type === state.filter
+          || (state.filter === 'favorite' && state.favorites.has(question.id))
+          || (state.filter === 'wrong' && state.stats[question.id] && !state.stats[question.id].correct);
+        return sourceMatches && filterMatches;
+      });
+    }
+    if (state.random && !state.studyMode) list = [...list].sort(() => Math.random() - 0.5);
+    state.items = list;
+    const savedId = state.studyMode ? localStorage.getItem(memorizeProgressKey) : null;
+    const savedIndex = savedId ? list.findIndex((question) => question.id === savedId) : -1;
+    state.index = savedIndex >= 0 ? savedIndex : Math.min(Math.max(state.index, 0), Math.max(list.length - 1, 0));
+    state.selected = new Set();
+    state.submitted = false;
+    render();
+  }
+
+  function render() {
+    const question = current();
+    const total = state.items.length;
+    if (state.studyMode && question) {
+      localStorage.setItem(memorizeActiveKey, 'true');
+      localStorage.setItem(memorizeProgressKey, question.id);
+    }
+    $('#allCount').textContent = bank.length;
+    $('#theoryCount').textContent = bank.filter((item) => item.source === 'theory').length;
+    $('#sampleCount').textContent = bank.filter((item) => item.source === 'sample').length;
+    $('#singleCount').textContent = bank.filter((item) => item.type === 'single').length;
+    $('#multipleCount').textContent = bank.filter((item) => item.type === 'multiple').length;
+    $('#favoriteCount').textContent = state.favorites.size;
+    $('#modeLabel').textContent = state.studyMode
+      ? '背题模式 · 全部题目'
+      : state.filter === 'favorite'
+        ? '收藏'
+        : `${sourceName(state.source)}${state.filter === 'all' ? '' : ` · ${state.filter === 'wrong' ? '错题重练' : typeName(state.filter)}`}`;
+    $('#progressText').textContent = total ? `${state.index + 1} / ${total}` : '0 / 0';
+    $('#progressBar').style.width = total ? `${(state.index + 1) / total * 100}%` : '0%';
+    $('#paletteMeta').textContent = `${state.items.filter((item) => state.stats[item.id]).length} / ${total}`;
+    document.querySelectorAll('.nav-btn').forEach((button) => button.classList.toggle('active', button.dataset.mode === 'memorize'
+      ? state.studyMode
+      : (button.dataset.source
+        ? button.dataset.source === state.source && state.filter !== 'favorite' && !state.studyMode
+        : button.dataset.filter === state.filter && !state.studyMode)));
+    renderCard(question);
+    renderPalette();
+  }
+
+  function renderCard(question) {
+    const card = $('#questionCard');
+    if (!question) {
+      card.innerHTML = '<div class="empty-state"><div><b>暂无题目</b><span>当前筛选条件下没有可显示的题目</span></div></div>';
+      $('#prevBtn').disabled = true;
+      $('#nextBtn').disabled = true;
+      return;
+    }
+    $('#prevBtn').disabled = state.index === 0;
+    $('#nextBtn').disabled = state.index === state.items.length - 1;
+    const stat = state.stats[question.id];
+    const answered = state.submitted;
+    const reveal = state.studyMode || (answered && state.instant);
+    const isSingleChoice = question.type !== 'multiple';
+    const isFavorite = state.favorites.has(question.id);
+    card.innerHTML = `<div class="question-meta"><span class="q-index">第 ${question.number} 题</span><span class="type-tag">${question.typeLabel || typeName(question.type)}</span><span class="type-tag source-tag">${question.sourceLabel || sourceName(question.source)}</span><button class="favorite-btn ${isFavorite ? 'active' : ''}" type="button" title="${isFavorite ? '取消收藏' : '收藏题目'}" aria-label="${isFavorite ? '取消收藏' : '收藏题目'}">${isFavorite ? '★' : '☆'}</button></div><h2 class="question-title">${esc(question.question)}</h2><div class="options">${question.options.map((option) => { const selected = state.selected.has(option.key); const right = reveal && question.answer.includes(option.key); const wrong = reveal && selected && !right; return `<label class="option ${selected ? 'selected' : ''} ${right ? 'correct' : ''} ${wrong ? 'incorrect' : ''}"><input type="checkbox" data-key="${option.key}" ${selected ? 'checked' : ''} ${state.studyMode || answered ? 'disabled' : ''}><span class="option-key">${option.key}</span><span class="option-text">${esc(option.text)}</span></label>`; }).join('')}</div>${reveal ? `<div class="result-note ${stat && !stat.correct ? 'error' : ''}"><strong>${state.studyMode ? '正确答案' : (stat && stat.correct ? '回答正确' : '回答错误')}</strong><span> · 正确答案：${question.answer.join('、')}</span></div>` : ''}`;
+    card.querySelector('.favorite-btn').onclick = () => toggleFavorite(question);
+    if (!answered && !state.studyMode) card.querySelectorAll('.option').forEach((option) => option.addEventListener('click', () => {
+      const key = option.querySelector('input').dataset.key;
+      if (isSingleChoice) {
+        state.selected = new Set([key]);
+        finalizeCurrent();
+        render();
+      } else {
+        state.selected.has(key) ? state.selected.delete(key) : state.selected.add(key);
+        renderCard(question);
+      }
+    }));
+  }
+
+  function toggleFavorite(question) {
+    if (state.favorites.has(question.id)) state.favorites.delete(question.id);
+    else state.favorites.add(question.id);
+    saveFavorites();
+    if (!state.studyMode && state.filter === 'favorite' && !state.favorites.has(question.id)) makeItems();
+    else render();
+  }
+
+  function finalizeCurrent() {
+    const question = current();
+    if (!question || state.studyMode || state.submitted || !state.selected.size) return false;
+    const correct = question.answer.length === state.selected.size && question.answer.every((key) => state.selected.has(key));
+    state.stats[question.id] = { correct, at: Date.now() };
+    state.submitted = true;
+    saveStats();
+    return true;
+  }
+
+  function renderPalette() {
+    const palette = $('#palette');
+    let lastType = '';
+    palette.innerHTML = state.items.map((question, index) => {
+      const stat = state.stats[question.id];
+      const className = index === state.index ? 'current' : stat ? (stat.correct ? 'done' : 'wrong') : '';
+      const heading = state.studyMode && question.type !== lastType
+        ? `<div class="palette-group-label">${typeName(question.type)}<span>${state.items.filter((item) => item.type === question.type).length} 题</span></div>`
+        : '';
+      lastType = question.type;
+      return `${heading}<button class="${className}" data-i="${index}">${index + 1}</button>`;
+    }).join('');
+    palette.querySelectorAll('button').forEach((button) => button.onclick = () => {
+      finalizeCurrent();
+      state.index = +button.dataset.i;
+      state.selected = new Set();
+      state.submitted = false;
+      render();
+    });
+  }
+
+  $('#prevBtn').onclick = () => {
+    if (state.index > 0) {
+      finalizeCurrent();
+      state.index--;
+      state.selected = new Set();
+      state.submitted = false;
+      render();
+    }
+  };
+  $('#nextBtn').onclick = () => {
+    if (state.index < state.items.length - 1) {
+      finalizeCurrent();
+      state.index++;
+      state.selected = new Set();
+      state.submitted = false;
+      render();
+    }
+  };
+  document.querySelectorAll('.nav-btn').forEach((button) => button.onclick = () => {
+    finalizeCurrent();
+    if (button.dataset.mode === 'memorize') {
+      state.studyMode = true;
+      state.index = 0;
+      makeItems();
+      return;
+    }
+    state.studyMode = false;
+    localStorage.removeItem(memorizeActiveKey);
+    if (button.dataset.source) {
+      state.source = button.dataset.source;
+      state.filter = 'all';
+    } else {
+      state.filter = button.dataset.filter;
+    }
+    state.index = 0;
+    makeItems();
+  });
+  $('#randomToggle').onchange = (event) => { state.random = event.target.checked; state.index = 0; makeItems(); };
+  $('#instantToggle').onchange = (event) => { state.instant = event.target.checked; if (state.submitted) render(); };
+  $('#resetBtn').onclick = () => {
+    if (confirm('确定清空本地答题记录吗？')) {
+      state.stats = {};
+      saveStats();
+      makeItems();
+    }
+  };
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') $('#prevBtn').click();
+    if (event.key === 'ArrowRight') $('#nextBtn').click();
+  });
+  updateSummary();
+  makeItems();
 })();
