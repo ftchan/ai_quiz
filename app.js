@@ -5,8 +5,10 @@
   const memorizeActiveKey = 'ai-quiz-memorize-active';
   const favoriteKey = 'ai-quiz-favorites';
   const wrongKey = 'ai-quiz-wrong-questions';
+  const statsKey = 'ai-quiz-stats';
+  const exportVersion = 1;
   const readStored = (key, fallback) => { try { return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback)); } catch { return fallback; } };
-  const storedStats = readStored('ai-quiz-stats', {});
+  const storedStats = readStored(statsKey, {});
   const storedFavorites = readStored(favoriteKey, []);
   const storedWrongs = readStored(wrongKey, null);
   const state = {
@@ -16,7 +18,7 @@
     favorites: new Set(storedFavorites.filter((id) => validIds.has(id))),
     wrongs: new Set((Array.isArray(storedWrongs) ? storedWrongs : Object.entries(storedStats).filter(([, stat]) => !stat.correct).map(([id]) => id)).filter((id) => validIds.has(id))),
   };
-  localStorage.setItem('ai-quiz-stats', JSON.stringify(state.stats));
+  localStorage.setItem(statsKey, JSON.stringify(state.stats));
   localStorage.setItem(favoriteKey, JSON.stringify([...state.favorites]));
   localStorage.setItem(wrongKey, JSON.stringify([...state.wrongs]));
 
@@ -27,7 +29,7 @@
   const sourceName = (source) => ({ theory: '理论题库', sample: '样题补充', all: '全部题目' }[source] || source);
 
   function saveStats() {
-    localStorage.setItem('ai-quiz-stats', JSON.stringify(state.stats));
+    localStorage.setItem(statsKey, JSON.stringify(state.stats));
     updateSummary();
   }
 
@@ -39,6 +41,63 @@
   function saveWrongs() {
     localStorage.setItem(wrongKey, JSON.stringify([...state.wrongs]));
     updateSummary();
+  }
+
+  function learningData() {
+    return {
+      version: exportVersion,
+      exportedAt: new Date().toISOString(),
+      stats: state.stats,
+      favorites: [...state.favorites],
+      wrongs: [...state.wrongs],
+      memorizeProgressId: localStorage.getItem(memorizeProgressKey),
+      memorizeActive: localStorage.getItem(memorizeActiveKey) === 'true'
+    };
+  }
+
+  function normalizeImport(data) {
+    if (!data || typeof data !== 'object' || !data.stats || typeof data.stats !== 'object' || Array.isArray(data.stats)) return null;
+    const stats = Object.fromEntries(Object.entries(data.stats).filter(([id, stat]) => validIds.has(id) && stat && typeof stat.correct === 'boolean').map(([id, stat]) => [id, { correct: stat.correct, at: Number.isFinite(stat.at) ? stat.at : Date.now() }]));
+    const favorites = Array.isArray(data.favorites) ? data.favorites.filter((id) => validIds.has(id)) : [];
+    const wrongs = Array.isArray(data.wrongs)
+      ? data.wrongs.filter((id) => validIds.has(id))
+      : Object.entries(stats).filter(([, stat]) => !stat.correct).map(([id]) => id);
+    return {
+      stats,
+      favorites: [...new Set(favorites)],
+      wrongs: [...new Set(wrongs)],
+      memorizeProgressId: validIds.has(data.memorizeProgressId) ? data.memorizeProgressId : null,
+      memorizeActive: data.memorizeActive === true
+    };
+  }
+
+  function exportLearningData() {
+    const file = new Blob([JSON.stringify(learningData(), null, 2)], { type: 'application/json' });
+    const link = document.createElement('a');
+    const date = new Date().toISOString().slice(0, 10);
+    link.href = URL.createObjectURL(file);
+    link.download = `ai-quiz-learning-data-${date}.json`;
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(link.href), 0);
+  }
+
+  function applyImportedData(data) {
+    state.stats = data.stats;
+    state.favorites = new Set(data.favorites);
+    state.wrongs = new Set(data.wrongs);
+    localStorage.setItem(statsKey, JSON.stringify(state.stats));
+    localStorage.setItem(favoriteKey, JSON.stringify([...state.favorites]));
+    localStorage.setItem(wrongKey, JSON.stringify([...state.wrongs]));
+    if (data.memorizeProgressId) localStorage.setItem(memorizeProgressKey, data.memorizeProgressId);
+    else localStorage.removeItem(memorizeProgressKey);
+    if (data.memorizeActive) localStorage.setItem(memorizeActiveKey, 'true');
+    else localStorage.removeItem(memorizeActiveKey);
+    state.studyMode = data.memorizeActive;
+    state.source = 'theory';
+    state.filter = 'all';
+    state.index = 0;
+    updateSummary();
+    makeItems();
   }
 
   function updateSummary() {
@@ -226,6 +285,22 @@
   });
   $('#randomToggle').onchange = (event) => { state.random = event.target.checked; state.index = 0; makeItems(); };
   $('#instantToggle').onchange = (event) => { state.instant = event.target.checked; if (state.submitted) render(); };
+  $('#exportBtn').onclick = exportLearningData;
+  $('#importBtn').onclick = () => $('#importFile').click();
+  $('#importFile').onchange = async (event) => {
+    const [file] = event.target.files;
+    event.target.value = '';
+    if (!file) return;
+    try {
+      const imported = normalizeImport(JSON.parse(await file.text()));
+      if (!imported) throw new Error('Invalid data');
+      if (!confirm('导入会覆盖当前浏览器中的答题记录、错题、收藏和背题进度，是否继续？')) return;
+      applyImportedData(imported);
+      alert('学习数据导入完成');
+    } catch {
+      alert('导入失败：请选择本网站导出的学习数据文件');
+    }
+  };
   $('#resetBtn').onclick = () => {
     if (confirm('确定清空本地答题记录吗？')) {
       state.stats = {};
