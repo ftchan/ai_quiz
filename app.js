@@ -4,17 +4,21 @@
   const memorizeProgressKey = 'ai-quiz-memorize-progress';
   const memorizeActiveKey = 'ai-quiz-memorize-active';
   const favoriteKey = 'ai-quiz-favorites';
+  const wrongKey = 'ai-quiz-wrong-questions';
   const readStored = (key, fallback) => { try { return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback)); } catch { return fallback; } };
   const storedStats = readStored('ai-quiz-stats', {});
   const storedFavorites = readStored(favoriteKey, []);
+  const storedWrongs = readStored(wrongKey, null);
   const state = {
     source: 'theory', filter: 'all', studyMode: localStorage.getItem(memorizeActiveKey) === 'true',
     items: [], index: 0, selected: new Set(), submitted: false, random: false, instant: true,
     stats: Object.fromEntries(Object.entries(storedStats).filter(([id]) => validIds.has(id))),
     favorites: new Set(storedFavorites.filter((id) => validIds.has(id))),
+    wrongs: new Set((Array.isArray(storedWrongs) ? storedWrongs : Object.entries(storedStats).filter(([, stat]) => !stat.correct).map(([id]) => id)).filter((id) => validIds.has(id))),
   };
   localStorage.setItem('ai-quiz-stats', JSON.stringify(state.stats));
   localStorage.setItem(favoriteKey, JSON.stringify([...state.favorites]));
+  localStorage.setItem(wrongKey, JSON.stringify([...state.wrongs]));
 
   const $ = (selector) => document.querySelector(selector);
   const esc = (value) => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
@@ -32,13 +36,18 @@
     updateSummary();
   }
 
+  function saveWrongs() {
+    localStorage.setItem(wrongKey, JSON.stringify([...state.wrongs]));
+    updateSummary();
+  }
+
   function updateSummary() {
     const results = Object.values(state.stats);
     const completed = results.length;
     const correct = results.filter((item) => item.correct).length;
     $('#doneCount').textContent = completed;
     $('#accuracy').textContent = completed ? `${Math.round(correct / completed * 100)}%` : '--';
-    $('#wrongCount').textContent = results.filter((item) => !item.correct).length;
+    $('#wrongCount').textContent = state.wrongs.size;
     $('#favoriteCount').textContent = state.favorites.size;
   }
 
@@ -54,7 +63,7 @@
         const filterMatches = state.filter === 'all'
           || question.type === state.filter
           || (state.filter === 'favorite' && state.favorites.has(question.id))
-          || (state.filter === 'wrong' && state.stats[question.id] && !state.stats[question.id].correct);
+          || (state.filter === 'wrong' && state.wrongs.has(question.id));
         return sourceMatches && filterMatches;
       });
     }
@@ -113,8 +122,11 @@
     const reveal = state.studyMode || (answered && state.instant);
     const isSingleChoice = question.type !== 'multiple';
     const isFavorite = state.favorites.has(question.id);
-    card.innerHTML = `<div class="question-meta"><span class="q-index">第 ${question.number} 题</span><span class="type-tag">${question.typeLabel || typeName(question.type)}</span><span class="type-tag source-tag">${question.sourceLabel || sourceName(question.source)}</span><button class="favorite-btn ${isFavorite ? 'active' : ''}" type="button" title="${isFavorite ? '取消收藏' : '收藏题目'}" aria-label="${isFavorite ? '取消收藏' : '收藏题目'}">${isFavorite ? '★' : '☆'}</button></div><h2 class="question-title">${esc(question.question)}</h2><div class="options">${question.options.map((option) => { const selected = state.selected.has(option.key); const right = reveal && question.answer.includes(option.key); const wrong = reveal && selected && !right; return `<label class="option ${selected ? 'selected' : ''} ${right ? 'correct' : ''} ${wrong ? 'incorrect' : ''}"><input type="checkbox" data-key="${option.key}" ${selected ? 'checked' : ''} ${state.studyMode || answered ? 'disabled' : ''}><span class="option-key">${option.key}</span><span class="option-text">${esc(option.text)}</span></label>`; }).join('')}</div>${reveal ? `<div class="result-note ${stat && !stat.correct ? 'error' : ''}"><strong>${state.studyMode ? '正确答案' : (stat && stat.correct ? '回答正确' : '回答错误')}</strong><span> · 正确答案：${question.answer.join('、')}</span></div>` : ''}`;
+    const canRemoveWrong = !state.studyMode && state.filter === 'wrong' && stat && stat.correct && state.wrongs.has(question.id);
+    card.innerHTML = `<div class="question-meta"><span class="q-index">第 ${question.number} 题</span><span class="type-tag">${question.typeLabel || typeName(question.type)}</span><span class="type-tag source-tag">${question.sourceLabel || sourceName(question.source)}</span><button class="favorite-btn ${isFavorite ? 'active' : ''}" type="button" title="${isFavorite ? '取消收藏' : '收藏题目'}" aria-label="${isFavorite ? '取消收藏' : '收藏题目'}">${isFavorite ? '★' : '☆'}</button></div><h2 class="question-title">${esc(question.question)}</h2><div class="options">${question.options.map((option) => { const selected = state.selected.has(option.key); const right = reveal && question.answer.includes(option.key); const wrong = reveal && selected && !right; return `<label class="option ${selected ? 'selected' : ''} ${right ? 'correct' : ''} ${wrong ? 'incorrect' : ''}"><input type="checkbox" data-key="${option.key}" ${selected ? 'checked' : ''} ${state.studyMode || answered ? 'disabled' : ''}><span class="option-key">${option.key}</span><span class="option-text">${esc(option.text)}</span></label>`; }).join('')}</div>${reveal ? `<div class="result-note ${stat && !stat.correct ? 'error' : ''}"><strong>${state.studyMode ? '正确答案' : (stat && stat.correct ? '回答正确' : '回答错误')}</strong><span> · 正确答案：${question.answer.join('、')}</span></div>` : ''}${canRemoveWrong ? '<div class="wrong-actions"><button class="secondary-btn remove-wrong-btn" type="button">移出错题</button></div>' : ''}`;
     card.querySelector('.favorite-btn').onclick = () => toggleFavorite(question);
+    const removeWrongButton = card.querySelector('.remove-wrong-btn');
+    if (removeWrongButton) removeWrongButton.onclick = () => removeWrong(question);
     if (!answered && !state.studyMode) card.querySelectorAll('.option').forEach((option) => option.addEventListener('click', () => {
       const key = option.querySelector('input').dataset.key;
       if (isSingleChoice) {
@@ -136,13 +148,21 @@
     else render();
   }
 
+  function removeWrong(question) {
+    state.wrongs.delete(question.id);
+    saveWrongs();
+    makeItems();
+  }
+
   function finalizeCurrent() {
     const question = current();
     if (!question || state.studyMode || state.submitted || !state.selected.size) return false;
     const correct = question.answer.length === state.selected.size && question.answer.every((key) => state.selected.has(key));
     state.stats[question.id] = { correct, at: Date.now() };
+    if (!correct) state.wrongs.add(question.id);
     state.submitted = true;
     saveStats();
+    if (!correct) saveWrongs();
     return true;
   }
 
@@ -209,7 +229,9 @@
   $('#resetBtn').onclick = () => {
     if (confirm('确定清空本地答题记录吗？')) {
       state.stats = {};
+      state.wrongs.clear();
       saveStats();
+      saveWrongs();
       makeItems();
     }
   };
