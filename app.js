@@ -230,7 +230,9 @@
     let lastType = '';
     palette.innerHTML = state.items.map((question, index) => {
       const stat = state.stats[question.id];
-      const className = index === state.index ? 'current' : stat ? (stat.correct ? 'done' : 'wrong') : '';
+      const statusClass = index === state.index ? 'current' : stat ? (stat.correct ? 'done' : 'wrong') : '';
+      const allOptionsCorrect = !state.studyMode && question.type === 'multiple' && question.answer.length === question.options.length;
+      const className = `${statusClass}${allOptionsCorrect ? ' all-options-correct' : ''}`.trim();
       const heading = state.studyMode && question.type !== lastType
         ? `<div class="palette-group-label">${typeName(question.type)}<span>${state.items.filter((item) => item.type === question.type).length} 题</span></div>`
         : '';

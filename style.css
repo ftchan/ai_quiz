@@ -9,3 +9,4 @@
 .option{width:100%;font:inherit;text-align:left}.option:disabled{cursor:default}
 .data-btn{height:34px;padding:0 10px;border:1px solid var(--line);background:#fff;color:#556176;font-size:12px;white-space:nowrap;cursor:pointer}.data-btn:hover{border-color:#b5c5df;background:#f9fbff}
 @media(max-width:680px){.topbar{height:auto;min-height:62px;display:block;padding:10px 15px}.top-actions{width:100%;display:grid;grid-template-columns:minmax(40px,1fr) minmax(40px,1fr) auto auto auto;gap:5px;margin-top:8px}.stat-chip{justify-content:center;min-width:0;padding:5px 6px}.stat-chip span{display:none}.stat-chip b{font-size:14px}.data-btn{padding:0 8px;font-size:12px}.top-actions .icon-btn{width:34px;height:34px}}
+.palette button.all-options-correct{border:1px solid #b9dfcf}.palette button.current.all-options-correct{border-color:#a5d7c3}.palette button.done.all-options-correct,.palette button.wrong.all-options-correct{border-color:#b9dfcf}
