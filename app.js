@@ -174,14 +174,17 @@
       $('#nextBtn').disabled = true;
       return;
     }
-    $('#prevBtn').disabled = state.index === 0;
-    $('#nextBtn').disabled = state.index === state.items.length - 1;
     const stat = state.stats[question.id];
     const answered = state.submitted;
     const reveal = state.studyMode || (answered && state.instant);
     const isSingleChoice = question.type !== 'multiple';
     const isFavorite = state.favorites.has(question.id);
     const canRemoveWrong = !state.studyMode && state.filter === 'wrong' && stat && stat.correct && state.wrongs.has(question.id);
+    $('#prevBtn').disabled = state.index === 0;
+    $('#nextBtn').disabled = state.index === state.items.length - 1 && (answered || !state.selected.size);
+    $('#nextBtn').textContent = !state.studyMode && !answered && !isSingleChoice && state.selected.size
+      ? '提交答案'
+      : '下一题 →';
     card.innerHTML = `<div class="question-meta"><span class="q-index">第 ${question.number} 题</span><span class="type-tag">${question.typeLabel || typeName(question.type)}</span><span class="type-tag source-tag">${question.sourceLabel || sourceName(question.source)}</span><button class="favorite-btn ${isFavorite ? 'active' : ''}" type="button" title="${isFavorite ? '取消收藏' : '收藏题目'}" aria-label="${isFavorite ? '取消收藏' : '收藏题目'}">${isFavorite ? '★' : '☆'}</button></div><h2 class="question-title">${esc(question.question)}</h2><div class="options">${question.options.map((option) => { const selected = state.selected.has(option.key); const right = reveal && question.answer.includes(option.key); const wrong = reveal && selected && !right; return `<button class="option ${selected ? 'selected' : ''} ${right ? 'correct' : ''} ${wrong ? 'incorrect' : ''}" type="button" data-key="${option.key}" aria-pressed="${selected}" ${state.studyMode || answered ? 'disabled' : ''}><span class="option-key">${option.key}</span><span class="option-text">${esc(option.text)}</span></button>`; }).join('')}</div>${reveal ? `<div class="result-note ${stat && !stat.correct ? 'error' : ''}"><strong>${state.studyMode ? '正确答案' : (stat && stat.correct ? '回答正确' : '回答错误')}</strong><span> · 正确答案：${question.answer.join('、')}</span></div>` : ''}${canRemoveWrong ? '<div class="wrong-actions"><button class="secondary-btn remove-wrong-btn" type="button">移出错题</button></div>' : ''}`;
     card.querySelector('.favorite-btn').onclick = () => toggleFavorite(question);
     const removeWrongButton = card.querySelector('.remove-wrong-btn');
@@ -225,6 +228,18 @@
     return true;
   }
 
+  function moveTo(index) {
+    // 多选题首次离开时先判分并保留在当前题，确保能看到正确答案。
+    if (finalizeCurrent()) {
+      render();
+      return;
+    }
+    state.index = index;
+    state.selected = new Set();
+    state.submitted = false;
+    render();
+  }
+
   function renderPalette() {
     const palette = $('#palette');
     let lastType = '';
@@ -240,30 +255,18 @@
       return `${heading}<button class="${className}" data-i="${index}">${index + 1}</button>`;
     }).join('');
     palette.querySelectorAll('button').forEach((button) => button.onclick = () => {
-      finalizeCurrent();
-      state.index = +button.dataset.i;
-      state.selected = new Set();
-      state.submitted = false;
-      render();
+      moveTo(+button.dataset.i);
     });
   }
 
   $('#prevBtn').onclick = () => {
     if (state.index > 0) {
-      finalizeCurrent();
-      state.index--;
-      state.selected = new Set();
-      state.submitted = false;
-      render();
+      moveTo(state.index - 1);
     }
   };
   $('#nextBtn').onclick = () => {
     if (state.index < state.items.length - 1) {
-      finalizeCurrent();
-      state.index++;
-      state.selected = new Set();
-      state.submitted = false;
-      render();
+      moveTo(state.index + 1);
     }
   };
   document.querySelectorAll('.nav-btn').forEach((button) => button.onclick = () => {
